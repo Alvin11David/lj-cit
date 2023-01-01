@@ -1,0 +1,38 @@
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .page-btn {
+    padding: 8px 16px;
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .page-link {
+    color: rgb(0, 100, 200);
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .page-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="pagination">
+  <button class="page-btn">Back</button>
+  <span style="display: flex; gap: 10px;">
+    <a class="page-link" href="#">1</a>
+    <a class="page-link" href="#">2</a>
+    <a class="page-link" href="#">3</a>
+    <a class="page-link" href="#">4</a>
+    <a class="page-link" href="#">5</a>
+  </span>
+  <button class="page-btn">Next</button>
+</div>
