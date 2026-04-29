@@ -21,6 +21,7 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
-.mypic.png
+mypic.png
 Testfile.py
+.images
 
