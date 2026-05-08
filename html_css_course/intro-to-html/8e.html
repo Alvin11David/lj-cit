@@ -1,0 +1,61 @@
+<style>
+  .uber-box {
+    font-family: Arial;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 24px;
+    width: 380px;
+  }
+
+  .uber-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+  }
+
+  .uber-input {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    background-color: rgb(235, 235, 235);
+    font-size: 15px;
+    color: rgb(120, 120, 120);
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  .uber-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .uber-btn-black {
+    padding: 14px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .uber-btn-gray {
+    padding: 14px 20px;
+    background-color: rgb(235, 235, 235);
+    color: black;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+  }
+</style>
+
+<div class="uber-box">
+  <p class="uber-title">Request a ride now</p>
+  <input class="uber-input" type="text" placeholder="Enter pickup location">
+  <input class="uber-input" type="text" placeholder="Enter destination">
+  <div class="uber-buttons">
+    <button class="uber-btn-black">Request now</button>
+    <button class="uber-btn-gray">Schedule for later</button>
+  </div>
+</div>

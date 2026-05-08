@@ -1,0 +1,47 @@
+<style>
+  .twitter-box {
+    font-family: Arial;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 12px 16px;
+    width: 420px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .twitter-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    vertical-align: middle;
+  }
+
+  .twitter-input {
+    flex: 1;
+    border: none;
+    font-size: 16px;
+    color: rgb(100, 100, 100);
+    outline: none;
+    vertical-align: middle;
+  }
+
+  .twitter-btn {
+    background-color: rgb(0, 131, 239);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+</style>
+
+<div class="twitter-box">
+  <img class="twitter-avatar" src="download.webp">
+  <input class="twitter-input" type="text" placeholder="What's happening?">
+  <button class="twitter-btn">Tweet</button>
+</div>

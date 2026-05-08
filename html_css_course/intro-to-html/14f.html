@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        height: 3000px;
+        margin: 0;
+      }
+
+      .discord-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        display: flex;
+      }
+
+      .icon-bar {
+        width: 70px;
+        background-color: rgb(50, 50, 55);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+        gap: 10px;
+      }
+
+      .icon-bar img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+      }
+
+      .channel-bar {
+        width: 160px;
+        background-color: rgb(45, 45, 50);
+        padding: 16px 12px;
+        color: white;
+        font-family: Arial;
+      }
+
+      .channel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .channel-title {
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin: 0;
+        color: rgb(200, 200, 200);
+      }
+
+      .channel-plus {
+        font-size: 18px;
+        color: rgb(180, 180, 180);
+        cursor: pointer;
+      }
+
+      .channel-item {
+        font-size: 14px;
+        color: rgb(180, 180, 180);
+        margin: 0 0 8px 0;
+        cursor: pointer;
+      }
+
+      .channel-item:hover {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="discord-sidebar">
+      <div class="icon-bar">
+        <img src="bull.jpeg">
+        <img src="cat.jpeg">
+        <img src="caat.jpeg">
+      </div>
+      <div class="channel-bar">
+        <div class="channel-header">
+          <p class="channel-title">INFO</p>
+          <span class="channel-plus">+</span>
+        </div>
+        <p class="channel-item"># new-videos</p>
+        <p class="channel-item"># updates</p>
+        <p class="channel-item"># faq</p>
+      </div>
+    </div>
+  </body>
+</html>

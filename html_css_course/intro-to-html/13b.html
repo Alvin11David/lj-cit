@@ -1,0 +1,52 @@
+<style>
+  .outer-flex-13b {
+    display: flex;
+    border: 1px solid rgb(200, 200, 200);
+    height: 80px;
+  }
+
+  .left-panel {
+    width: 100px;
+    background-color: lightpink;
+    flex-shrink: 0;
+  }
+
+  .right-panel {
+    flex: 1;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px;
+  }
+
+  .row-top {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .row-bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .row-label {
+    background-color: black;
+    color: white;
+    font-size: 13px;
+    padding: 2px 4px;
+  }
+</style>
+
+<div class="outer-flex-13b">
+  <div class="left-panel"></div>
+  <div class="right-panel">
+    <div class="row-top">
+      <span class="row-label">row1</span>
+    </div>
+    <div class="row-bottom">
+      <span class="row-label">row2</span>
+      <span class="row-label">row2</span>
+    </div>
+  </div>
+</div>

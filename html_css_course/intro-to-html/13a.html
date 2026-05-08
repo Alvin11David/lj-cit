@@ -1,0 +1,36 @@
+<style>
+  .outer-flex-13a {
+    display: flex;
+    border: 1px solid rgb(200, 200, 200);
+    height: 80px;
+  }
+
+  .left-element {
+    width: 100px;
+    background-color: lightpink;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 6px;
+  }
+
+  .right-element {
+    width: 200px;
+    background-color: lightblue;
+    flex: 1;
+  }
+
+  .item-label {
+    background-color: black;
+    color: white;
+    font-size: 13px;
+    padding: 2px 4px;
+  }
+</style>
+
+<div class="outer-flex-13a">
+  <div class="left-element">
+    <span class="item-label">item1</span>
+  </div>
+  <div class="right-element"></div>
+</div>

@@ -1,0 +1,57 @@
+<style>
+  .profile-card {
+    font-family: Arial;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 16px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    width: 380px;
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    object-position: top;
+  }
+
+  .profile-info {
+    flex: 1;
+  }
+
+  .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 2px 0;
+  }
+
+  .profile-sub {
+    font-size: 14px;
+    color: rgb(120, 120, 120);
+    margin: 0 0 2px 0;
+  }
+
+  .follow-btn {
+    background-color: rgb(80, 150, 230);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+</style>
+
+<div class="profile-card">
+  <img class="profile-avatar" src="download.webp">
+  <div class="profile-info">
+    <p class="profile-name">oliver</p>
+    <p class="profile-sub">the cat</p>
+    <p class="profile-sub">Popular</p>
+  </div>
+  <button class="follow-btn">Follow</button>
+</div>

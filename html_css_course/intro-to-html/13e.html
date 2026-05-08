@@ -1,0 +1,104 @@
+<style>
+  .gmail-box-multi {
+    font-family: Arial;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 8px;
+    padding: 12px 16px;
+    width: 380px;
+  }
+
+  .email-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(230, 230, 230);
+  }
+
+  .email-row:last-child {
+    border-bottom: none;
+  }
+
+  .email-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .email-content {
+    flex: 1;
+  }
+
+  .email-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+
+  .email-sender {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .email-time {
+    font-size: 13px;
+    color: rgb(120, 120, 120);
+    margin: 0;
+  }
+
+  .email-subject {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 2px 0;
+  }
+
+  .email-preview {
+    font-size: 13px;
+    color: rgb(120, 120, 120);
+    margin: 0;
+  }
+</style>
+
+<div class="gmail-box-multi">
+  <p class="all-inboxes">ALL INBOXES</p>
+
+  <div class="email-row">
+    <img class="email-avatar" src="cat.jpeg">
+    <div class="email-content">
+      <div class="email-top-row">
+        <p class="email-sender">Chewy Promotions</p>
+        <p class="email-time">4:58 PM</p>
+      </div>
+      <p class="email-subject">Biggest sales of the year!</p>
+      <p class="email-preview">Hey there! We're writing to tell you about our...</p>
+    </div>
+  </div>
+
+  <div class="email-row">
+    <img class="email-avatar" src="caat.jpeg">
+    <div class="email-content">
+      <div class="email-top-row">
+        <p class="email-sender">Best Buy</p>
+        <p class="email-time">12:32 PM</p>
+      </div>
+      <p class="email-subject">Your Best Buy eReceipt</p>
+      <p class="email-preview">Thank you for shopping at Best Buy, here is...</p>
+    </div>
+  </div>
+
+  <div class="email-row">
+    <img class="email-avatar" src="bull.jpeg">
+    <div class="email-content">
+      <div class="email-top-row">
+        <p class="email-sender">Netflix</p>
+        <p class="email-time">9:00 AM</p>
+      </div>
+      <p class="email-subject">Here's what's coming soon to Netflix</p>
+      <p class="email-preview">Brand new movies and shows, old favorites...</p>
+    </div>
+  </div>
+</div>
