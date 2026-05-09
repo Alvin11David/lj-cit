@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        height: 3000px;
+        margin: 0;
+      }
+
+      .video-ad {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 320px;
+        height: 180px;
+        background-color: rgb(150, 150, 150);
+      }
+
+      .close-button {
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: black;
+        color: white;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .timestamp {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background-color: black;
+        color: white;
+        font-size: 13px;
+        font-family: Arial;
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="video-ad">
+      <button class="close-button">X</button>
+      <div class="timestamp">0:29</div>
+    </div>
+  </body>
+</html>
