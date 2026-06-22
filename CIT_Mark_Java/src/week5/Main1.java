@@ -1,3 +1,5 @@
+package week5;
+
 class Notifications {
     public void send(){
         System.out.println("Sending...");
