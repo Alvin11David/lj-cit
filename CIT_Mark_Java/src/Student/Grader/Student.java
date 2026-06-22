@@ -32,6 +32,21 @@ public class Student {
     }
 
 
+    public char grade(){
+        if (average()>=80){
+            return 'A';
+        } else if (average()>=70) {
+            return 'B';
+        } else if (average()>=60) {
+            return 'C';
+        } else if (average()>=50) {
+            return 'D';
+        } else if (average()>=45) {
+            return 'E';
+        }else {
+            return 'F';
+        }
+    }
 
 
 }
