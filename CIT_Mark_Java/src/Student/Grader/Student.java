@@ -27,5 +27,11 @@ public class Student {
         }
     }
 
+    public double average(){
+        return Arrays.stream(scoresList).average().orElse(0.0);
+    }
+
+
+
 
 }
