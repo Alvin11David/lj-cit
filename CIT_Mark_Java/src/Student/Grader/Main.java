@@ -18,138 +18,148 @@ public class Main {
         StudentService studentService = new StudentService();
         while(true){
             screen();
-            String option = scanner.nextLine();
-            scanner.nextLine();
-            if(option.equals("1")){
-                System.out.println("Enter Registration Number: ");
-                String registrationNumber = scanner.nextLine();
-                System.out.println("Enter Student Name: ");
-                String name = scanner.nextLine();
-                if(studentService.getStudentHashMap().containsKey(registrationNumber)){
-                    System.out.println("Student Registration Number already exists...!!!");
-                }else {
-                    studentService.add(registrationNumber, new Student(registrationNumber, name));
-                    System.out.println("Student added successfully....");
-                }
-            } else if (option.equals("2")) {
-                System.out.println("Enter Registration Number: ");
-                String registrationNumber = scanner.nextLine();
-                if(studentService.getStudentHashMap().containsKey(registrationNumber)){
-                    System.out.println("Enter subject: ");
-                    String subject = scanner.nextLine();
-                    if(!(subject.toLowerCase().startsWith("maths")|| subject.toLowerCase().startsWith("eng") ||
-                            subject.toLowerCase().startsWith("sci") || subject.toLowerCase().startsWith("sst"))){
-                        System.out.println("Subject must be one of {maths, eng,sst,sci}");
+            try{
+                int option = scanner.nextInt();
+                scanner.nextLine();
+                if(option==1){
+                    System.out.println("Enter Registration Number: ");
+                    String registrationNumber = scanner.nextLine();
+                    System.out.println("Enter Student Name: ");
+                    String name = scanner.nextLine();
+                    if(studentService.getStudentHashMap().containsKey(registrationNumber)){
+                        System.out.println("Student Registration Number already exists...!!!");
                     }else {
-                        System.out.println("Enter "+ subject + " score: ");
+                        studentService.add(registrationNumber, new Student(registrationNumber, name));
+                        System.out.println("Student added successfully....");
+                    }
+                } else if (option==2) {
+                    System.out.println("Enter Registration Number: ");
+                    String registrationNumber = scanner.nextLine();
+                    if(studentService.getStudentHashMap().containsKey(registrationNumber)){
+                        System.out.println("Enter subject: ");
+                        String subject = scanner.nextLine();
+                        if(!(subject.toLowerCase().startsWith("maths")|| subject.toLowerCase().startsWith("eng") ||
+                                subject.toLowerCase().startsWith("sci") || subject.toLowerCase().startsWith("sst"))){
+                            System.out.println("ERROR: Subject must be one of {maths, eng,sst,sci}");
+                        }else {
+                            System.out.println("Enter "+ subject + " score: ");
+                            try {
+                                int score = scanner.nextInt();
+                                scanner.nextLine();
+                                if(score>=0 && score<=100){
+                                    studentService.getStudentHashMap().get(registrationNumber).addScore(subject,score);
+                                    System.out.println("Score added successfully....");
+                                }else {
+                                    System.out.println("ERROR: Score must lie between 0 and 100 inclusive...");
+                                }
+
+                            }catch (InputMismatchException e){
+                                System.out.println("ERROR: Only Integers are allowed..");
+                            }
+                        }
+                    }else{
+                        System.out.println("ERROR: Registration Number Unknown...!!!");
+                    }
+                } else if (option==3) {
+                    System.out.println("Enter Registration Number: ");
+                    String registrationNumber = scanner.nextLine();
+                    if(studentService.getStudentHashMap().containsKey(registrationNumber)){
+                        int math,sci,eng,sst;
+                        System.out.println("Enter Maths Score: ");
                         try {
-                            int score = scanner.nextInt();
+                            math = scanner.nextInt();
                             scanner.nextLine();
-                            studentService.getStudentHashMap().get(registrationNumber).addScore(subject,score);
-                            System.out.println("Score added successfully....");
+                            if(math>=0 && math<=100){
+                                studentService.getStudentHashMap().get(registrationNumber).addScore("maths",math);
+                            }else {
+                                System.out.println("ERROR: Scores lie between 0 and 100 inclusive");
+                            }
                         }catch (InputMismatchException e){
-                            System.out.println("Only Integers are allowed..");
+                            System.out.println("ERROR: only integers are expected!!");
+                            scanner.next();
                         }
-                    }
-                }else{
-                    System.out.println("Registration Number Unknown...!!!");
-                }
-            } else if (option.equals("3")) {
-                System.out.println("Enter Registration Number: ");
-                String registrationNumber = scanner.nextLine();
-                if(studentService.getStudentHashMap().containsKey(registrationNumber)){
-                    int math,sci,eng,sst;
-                    System.out.println("Enter Maths Score: ");
-                    try {
-                        math = scanner.nextInt();
-                        scanner.nextLine();
-                        if(math>=0 && math<=100){
-                            studentService.getStudentHashMap().get(registrationNumber).addScore("maths",math);
-                        }else {
-                            System.out.println("Scores lie between 0 and 100 inclusive");
+                        System.out.println("Enter Science Score: ");
+                        try {
+                            sci = scanner.nextInt();
+                            scanner.nextLine();
+                            if(sci>=0 && sci<=100){
+                                studentService.getStudentHashMap().get(registrationNumber).addScore("sci",sci);
+                            }else {
+                                System.out.println("ERROR: Scores lie between 0 and 100 inclusive");
+                            }
+                        }catch (InputMismatchException e){
+                            System.out.println("ERROR: only integers are expected!!");
+                            scanner.next();
                         }
-                    }catch (InputMismatchException e){
-                        System.out.println("Error only integers are expected!!");
-                        scanner.next();
-                    }
-                    System.out.println("Enter Science Score: ");
-                    try {
-                        sci = scanner.nextInt();
-                        scanner.nextLine();
-                        if(sci>=0 && sci<=100){
-                            studentService.getStudentHashMap().get(registrationNumber).addScore("sci",sci);
-                        }else {
-                            System.out.println("Scores lie between 0 and 100 inclusive");
+                        System.out.println("Enter English Score: ");
+                        try {
+                            eng = scanner.nextInt();
+                            scanner.nextLine();
+                            if(eng>=0 && eng<=100){
+                                studentService.getStudentHashMap().get(registrationNumber).addScore("eng",eng);
+                            }else {
+                                System.out.println("ERROR: Scores lie between 0 and 100 inclusive");
+                            }
+                        }catch (InputMismatchException e){
+                            System.out.println("ERROR: only integers are expected!!");
+                            scanner.next();
                         }
-                    }catch (InputMismatchException e){
-                        System.out.println("Error only integers are expected!!");
-                        scanner.next();
-                    }
-                    System.out.println("Enter English Score: ");
-                    try {
-                        eng = scanner.nextInt();
-                        scanner.nextLine();
-                        if(eng>=0 && eng<=100){
-                            studentService.getStudentHashMap().get(registrationNumber).addScore("eng",eng);
-                        }else {
-                            System.out.println("Scores lie between 0 and 100 inclusive");
+                        System.out.println("Enter SST Score: ");
+                        try {
+                            sst = scanner.nextInt();
+                            scanner.nextLine();
+                            if(sst>=0 && sst<=100){
+                                studentService.getStudentHashMap().get(registrationNumber).addScore("sst",sst);
+                            }else {
+                                System.out.println("ERROR: Scores lie between 0 and 100 inclusive");
+                            }
+                        }catch (InputMismatchException e){
+                            System.out.println("ERROR: only integers are expected!!");
+                            scanner.next();
                         }
-                    }catch (InputMismatchException e){
-                        System.out.println("Error only integers are expected!!");
-                        scanner.next();
+                        System.out.println("Scores added successfully....");
+                    }else{
+                        System.out.println("ERROR: Invalid Registration Number...!!");
                     }
-                    System.out.println("Enter SST Score: ");
-                    try {
-                        sst = scanner.nextInt();
-                        scanner.nextLine();
-                        if(sst>=0 && sst<=100){
-                            studentService.getStudentHashMap().get(registrationNumber).addScore("sst",sst);
-                        }else {
-                            System.out.println("Scores lie between 0 and 100 inclusive");
-                        }
-                    }catch (InputMismatchException e){
-                        System.out.println("Error only integers are expected!!");
-                        scanner.next();
+                } else if (option==4) {
+                    System.out.println("Enter Student Registration Number: ");
+                    String registrationNumber = scanner.nextLine();
+                    if(studentService.getStudentHashMap().containsKey(registrationNumber)){
+                        System.out.println(studentService.getStudentHashMap().get(registrationNumber).getName() +
+                                " :  Average: " + studentService.getStudentHashMap().get(registrationNumber).average());
+                    }else{
+                        System.out.println("ERROR: Student Registration Number Unknown Try Again...!!");
                     }
-                    System.out.println("Scores added successfully....");
-                }else{
-                    System.out.println("Invalid Registration Number...!!");
-                }
-            } else if (option.equals("4")) {
-                System.out.println("Enter Student Registration Number: ");
-                String registrationNumber = scanner.nextLine();
-                if(studentService.getStudentHashMap().containsKey(registrationNumber)){
-                    System.out.println(studentService.getStudentHashMap().get(registrationNumber).getName() +
-                            " :  Average: " + studentService.getStudentHashMap().get(registrationNumber).average());
-                }else{
-                    System.out.println("Student Registration Number Unknown Try Again...!!");
-                }
-            } else if (option.equals("5")) {
-                System.out.println("Enter Student Registration Number: ");
-                String registrationNumber = scanner.nextLine();
-                if(studentService.getStudentHashMap().containsKey(registrationNumber)){
-                    System.out.println(studentService.getStudentHashMap().get(registrationNumber).getName()+
-                            " :  Grade: "+ gradeCalculator.grade(studentService.getStudentHashMap().get(registrationNumber)));
+                } else if (option==5) {
+                    System.out.println("Enter Student Registration Number: ");
+                    String registrationNumber = scanner.nextLine();
+                    if(studentService.getStudentHashMap().containsKey(registrationNumber)){
+                        System.out.println(studentService.getStudentHashMap().get(registrationNumber).getName()+
+                                " :  Grade: "+ gradeCalculator.grade(studentService.getStudentHashMap().get(registrationNumber)));
+                    }else {
+                        System.out.println("ERROR: Registration Number Unknown!!!");
+                    }
+                } else if (option==6) {
+                    studentService.list();
+                } else if (option==7) {
+                    System.out.println("Enter Registration Number: ");
+                    String registrationNumber = scanner.nextLine();
+                    if(studentService.getStudentHashMap().containsKey(registrationNumber)){
+                        studentService.list(registrationNumber);
+                    }else {
+                        System.out.println("ERROR: Registration Number Unknown!!!");
+                    }
+                } else if (option==0) {
+                    System.out.println("Closing System...");
+                    scanner.close();
+                    break;
                 }else {
-                    System.out.println("Registration Number Unknown!!!");
+                    System.out.println("ERROR: Invalid Option. Please Try Again....");
                 }
-            } else if (option.equals("6")) {
-                studentService.list();
-            } else if (option.equals("7")) {
-                System.out.println("Enter Registration Number: ");
-                String registrationNumber = scanner.nextLine();
-                if(studentService.getStudentHashMap().containsKey(registrationNumber)){
-                    studentService.list(registrationNumber);
-                }else {
-                    System.out.println("Registration Number Unknown!!!");
-                }
-            } else if (option.equals("0")) {
-                System.out.println("Closing System...");
-                scanner.close();
-                break;
-            }else {
-                System.out.println("Invalid Option. Please Try Again....");
+            }catch (InputMismatchException e){
+                System.out.println("ERROR: Option must be integer");
             }
+
         }
     }
 }
