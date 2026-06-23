@@ -16,7 +16,11 @@ public class StudentService {
         return studentHashMap.get(registrationNumber).toString();
     }
 
-
+    public void list(){
+        for(String registrationNumber: studentHashMap.keySet()){
+            System.out.println(studentHashMap.get(registrationNumber));
+        }
+    }
 
 
 }
