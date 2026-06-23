@@ -9,5 +9,16 @@ public class StudentService {
         studentHashMap.put(registrationNumber,student);
     }
 
+    public String find(String registrationNumber){
+        try {
+            return studentHashMap.get(registrationNumber).toString();
+        }
+        catch ( Exception e){
+            return "Student Registration Not Found! Please Try again....";
+        }
+    }
+
+
+
 
 }
