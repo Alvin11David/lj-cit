@@ -27,13 +27,19 @@ public class StudentService {
         }
     }
 
+    public void list(String registrationNumber){
+        System.out.println(studentHashMap.get(registrationNumber));
+    }
+
+    /*
+
     public Optional<Student> getStudent(String registrationNumber) {
         if (registrationNumber == null) {
             return Optional.empty();
         }
         return Optional.ofNullable(studentHashMap.get(registrationNumber));
     }
-
+    */
 
 
 }
