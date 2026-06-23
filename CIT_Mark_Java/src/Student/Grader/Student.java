@@ -8,6 +8,11 @@ public class Student {
     private String registrationNumber;
     private int[] scoresList = new int[4];
 
+    Student( String registrationNumber,String name){
+        this.registrationNumber = registrationNumber;
+        this.name = name;
+    }
+
     public void addScore(int sst, int maths,int sci , int eng){
         scoresList[0] = sst;
         scoresList[1] = maths;
@@ -27,11 +32,23 @@ public class Student {
         return scoresList;
     }
 
+    /*
     @Override
     public String toString(){
         return "Name: "+name + "  :  Registration No."+ registrationNumber + "  :  \nscores "
                 + scoresList[0] + " | "+scoresList[1] + " | "+scoresList[2] + " | "+scoresList[3];
     }
+     */
+
+    @Override
+    public String toString() {
+        return """
+           Name: %s
+           Registration No: %s
+           Scores: %d | %d | %d | %d
+           """.formatted(name, registrationNumber, scoresList[0], scoresList[1], scoresList[2], scoresList[3]);
+    }
+
 
     public void addScore(String subject, int score){
         if(subject.toLowerCase().startsWith("sst")){
