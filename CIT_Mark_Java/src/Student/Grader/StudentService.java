@@ -1,6 +1,7 @@
 package Student.Grader;
 import java.util.HashMap;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class StudentService {
     HashMap<String,Student> studentHashMap = new HashMap<>();
@@ -21,6 +22,14 @@ public class StudentService {
             System.out.println(studentHashMap.get(registrationNumber));
         }
     }
+
+    public Optional<Student> getStudent(String registrationNumber) {
+        if (registrationNumber == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(studentHashMap.get(registrationNumber));
+    }
+
 
 
 }
