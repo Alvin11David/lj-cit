@@ -74,9 +74,8 @@ public class StudentService {
 
             char letterGrade = Student.calculateGrade(score);
 
-            System.out.printf("Subject: %-13s      Score: %d -> Grade: %c%n", subject, score, letterGrade);
-            System.out.println();
-            System.out.println();
+            System.out.printf("Subject: %-13s      Score: %d -> Grade: %c", subject, score, letterGrade);
+
         }
     }
     public void showAllStudentAveragesAndDetails(){
@@ -90,6 +89,7 @@ public class StudentService {
             System.out.println("Name: "+ student.getName());
             System.out.println();
             loopThroughGradesMap(student.getGrades());
+            System.out.println();
         }
     }
 

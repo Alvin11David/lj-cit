@@ -103,11 +103,11 @@ public class Main {
                                 try {
                                     score = Integer.parseInt(input);
                                 } catch (NumberFormatException e) {
-                                    System.out.println("(!) Invalid input. Please enter a whole number.");
+                                    System.out.println(" Invalid input. Please enter a whole number.");
                                     continue;
                                 }
                                 if (score < 0 || score > 100) {
-                                    System.out.println("(!) Score must be between 0 and 100.");
+                                    System.out.println("Score must be between 0 and 100.");
                                     continue;
                                 }
                                 break;
