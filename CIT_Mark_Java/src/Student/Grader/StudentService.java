@@ -9,10 +9,5 @@ public class StudentService {
         studentHashMap.put(registrationNumber,student);
     }
 
-    public Student find(String registrationNumber){
-        try {
-            studentHashMap.get(registrationNumber).
-        }
-        catch ()
-    }
+
 }
