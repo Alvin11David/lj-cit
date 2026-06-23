@@ -11,7 +11,7 @@ public class Student {
     private Map<Subject, Integer> grades = new HashMap<>();
 
     // Main constructur
-    Student(String id, String email, String name, Map grades) {
+    Student(String id, String email, String name, Map<Subject, Integer> grades) {
         this.id = id;
         this.email = email;
         this.name = name;

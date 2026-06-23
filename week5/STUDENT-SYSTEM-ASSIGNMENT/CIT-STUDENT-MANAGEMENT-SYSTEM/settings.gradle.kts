@@ -1,0 +1,1 @@
+rootProject.name = "CIT-STUDENT-MANAGEMENT-SYSTEM"
