@@ -1,19 +1,23 @@
 package org.example;
 
 public class Exceptions {
-    public static double divide(double a, double b){
-        return a/b;
-    }
-    public static void main(String[] args){
+    public static int divide(int a, int b){
+	try {
 
-        try {
-            divide(32,8);
-            divide(24,0);
+         return a/b;
 
         } catch (ArithmeticException e) {
             System.out.println("Division by Zero not allowed");
+            return 0;
         } finally {
             System.out.println("Done..");
         }
+
+    }
+    public static void main(String[] args){
+            divide(32,8);
+            divide(24,0);
+
+        
     }
 }
