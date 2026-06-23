@@ -10,12 +10,10 @@ public class StudentService {
     }
 
     public String find(String registrationNumber){
-        try {
-            return studentHashMap.get(registrationNumber).toString();
+        if(registrationNumber==null || !studentHashMap.containsKey(registrationNumber)){
+            return "Student Registration Number Not Found!!. Please Try again...";
         }
-        catch ( Exception e){
-            return "Student Registration Not Found! Please Try again....";
-        }
+        return studentHashMap.get(registrationNumber).toString();
     }
 
 
