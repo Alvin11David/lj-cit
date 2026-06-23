@@ -6,13 +6,31 @@ import java.util.*;
 public class Student {
     private String name;
     private String registrationNumber;
-    int[] scoresList = new int[4];
+    private int[] scoresList = new int[4];
 
     public void addScore(int sst, int maths,int sci , int eng){
         scoresList[0] = sst;
         scoresList[1] = maths;
         scoresList[2] = sci;
         scoresList[3] = eng;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRegistrationNumber(){
+        return registrationNumber;
+    }
+
+    public int[] getScoresList(){
+        return scoresList;
+    }
+
+    @Override
+    public String toString(){
+        return "Name: "+name + "  :  Registration No."+ registrationNumber + "  :  \nscores "
+                + scoresList[0] + " | "+scoresList[1] + " | "+scoresList[2] + " | "+scoresList[3];
     }
 
     public void addScore(String subject, int score){
