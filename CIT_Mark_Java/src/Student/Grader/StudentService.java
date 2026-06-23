@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class StudentService {
-    HashMap<String,Student> studentHashMap = new HashMap<>();
+    private HashMap<String,Student> studentHashMap = new HashMap<>();
+
+    public HashMap<String, Student> getStudentHashMap() {
+        return studentHashMap;
+    }
 
     public void add(String registrationNumber, Student student){
         studentHashMap.put(registrationNumber,student);
