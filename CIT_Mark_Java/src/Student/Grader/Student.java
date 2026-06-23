@@ -32,14 +32,6 @@ public class Student {
         return scoresList;
     }
 
-    /*
-    @Override
-    public String toString(){
-        return "Name: "+name + "  :  Registration No."+ registrationNumber + "  :  \nscores "
-                + scoresList[0] + " | "+scoresList[1] + " | "+scoresList[2] + " | "+scoresList[3];
-    }
-     */
-
     @Override
     public String toString() {
         return """
@@ -66,7 +58,6 @@ public class Student {
         return Arrays.stream(scoresList).average().orElse(0.0);
     }
 
-
     public char grade(){
         if (average()>=80){
             return 'A';
@@ -82,6 +73,4 @@ public class Student {
             return 'F';
         }
     }
-
-
 }
