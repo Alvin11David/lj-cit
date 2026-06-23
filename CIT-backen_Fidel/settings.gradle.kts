@@ -1,1 +1,0 @@
-rootProject.name = "CIT-backen_Fidel"
