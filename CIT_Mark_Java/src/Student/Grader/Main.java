@@ -1,8 +1,6 @@
 package Student.Grader;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class Main {
     public static void screen(){
         System.out.println("1. To Add Student: ");
@@ -18,12 +16,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         GradeCalculator gradeCalculator = new GradeCalculator();
         StudentService studentService = new StudentService();
-
         while(true){
             screen();
-            int option = scanner.nextInt();
+            String option = scanner.nextLine();
             scanner.nextLine();
-            if(option==1){
+            if(option.equals("1")){
                 System.out.println("Enter Registration Number: ");
                 String registrationNumber = scanner.nextLine();
                 System.out.println("Enter Student Name: ");
@@ -34,7 +31,7 @@ public class Main {
                     studentService.add(registrationNumber, new Student(registrationNumber, name));
                     System.out.println("Student added successfully....");
                 }
-            } else if (option==2) {
+            } else if (option.equals("2")) {
                 System.out.println("Enter Registration Number: ");
                 String registrationNumber = scanner.nextLine();
                 if(studentService.getStudentHashMap().containsKey(registrationNumber)){
@@ -57,7 +54,7 @@ public class Main {
                 }else{
                     System.out.println("Registration Number Unknown...!!!");
                 }
-            } else if (option==3) {
+            } else if (option.equals("3")) {
                 System.out.println("Enter Registration Number: ");
                 String registrationNumber = scanner.nextLine();
                 if(studentService.getStudentHashMap().containsKey(registrationNumber)){
@@ -71,7 +68,6 @@ public class Main {
                         }else {
                             System.out.println("Scores lie between 0 and 100 inclusive");
                         }
-
                     }catch (InputMismatchException e){
                         System.out.println("Error only integers are expected!!");
                         scanner.next();
@@ -85,7 +81,6 @@ public class Main {
                         }else {
                             System.out.println("Scores lie between 0 and 100 inclusive");
                         }
-
                     }catch (InputMismatchException e){
                         System.out.println("Error only integers are expected!!");
                         scanner.next();
@@ -99,7 +94,6 @@ public class Main {
                         }else {
                             System.out.println("Scores lie between 0 and 100 inclusive");
                         }
-
                     }catch (InputMismatchException e){
                         System.out.println("Error only integers are expected!!");
                         scanner.next();
@@ -121,7 +115,7 @@ public class Main {
                 }else{
                     System.out.println("Invalid Registration Number...!!");
                 }
-            } else if (option==4) {
+            } else if (option.equals("4")) {
                 System.out.println("Enter Student Registration Number: ");
                 String registrationNumber = scanner.nextLine();
                 if(studentService.getStudentHashMap().containsKey(registrationNumber)){
@@ -130,7 +124,7 @@ public class Main {
                 }else{
                     System.out.println("Student Registration Number Unknown Try Again...!!");
                 }
-            } else if (option==5) {
+            } else if (option.equals("5")) {
                 System.out.println("Enter Student Registration Number: ");
                 String registrationNumber = scanner.nextLine();
                 if(studentService.getStudentHashMap().containsKey(registrationNumber)){
@@ -139,9 +133,9 @@ public class Main {
                 }else {
                     System.out.println("Registration Number Unknown!!!");
                 }
-            } else if (option==6) {
+            } else if (option.equals("6")) {
                 studentService.list();
-            } else if (option==7) {
+            } else if (option.equals("7")) {
                 System.out.println("Enter Registration Number: ");
                 String registrationNumber = scanner.nextLine();
                 if(studentService.getStudentHashMap().containsKey(registrationNumber)){
@@ -149,7 +143,7 @@ public class Main {
                 }else {
                     System.out.println("Registration Number Unknown!!!");
                 }
-            } else if (option==0) {
+            } else if (option.equals("0")) {
                 System.out.println("Closing System...");
                 scanner.close();
                 break;
@@ -157,30 +151,5 @@ public class Main {
                 System.out.println("Invalid Option. Please Try Again....");
             }
         }
-
-/*
-        studentService.add("01X",new Student("01X","Mark"));
-        studentService.add("02X",new Student("02X","JP"));
-        studentService.add("03X",new Student("03X","Ivy"));
-
-        //studentService.getStudent("01X").ifPresent(student -> student.addScore(90,88,76,98));
-
-        studentService.getStudentHashMap().get("01X").addScore(90,88,76,98);
-
-
-        //studentService.getStudent("02X").ifPresent(student -> student.addScore("sst",98));
-        studentService.getStudentHashMap().get("02X").addScore("sst",98);
-        studentService.list();
-
-
-        System.out.println(studentService.getStudentHashMap().get("01X").average());
-
-        System.out.println(gradeCalculator.grade(studentService.getStudentHashMap().get("01X")));
-        studentService.getStudentHashMap().get("02X").addScore(90,78,88,90);
-
-*/
-
-
-
     }
 }
