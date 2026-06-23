@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CIT-backen_Fidel.iml" filepath="$PROJECT_DIR$/.idea/modules/CIT-backen_Fidel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CIT-backen_Fidel.main.iml" filepath="$PROJECT_DIR$/.idea/modules/CIT-backen_Fidel.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CIT-backen_Fidel.test.iml" filepath="$PROJECT_DIR$/.idea/modules/CIT-backen_Fidel.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CIT_BAckend_Fidel/CIT_BAckend_Fidel.iml" filepath="$PROJECT_DIR$/CIT_BAckend_Fidel/CIT_BAckend_Fidel.iml" />
       <module fileurl="file://$PROJECT_DIR$/lj-cit.iml" filepath="$PROJECT_DIR$/lj-cit.iml" />
     </modules>
   </component>
