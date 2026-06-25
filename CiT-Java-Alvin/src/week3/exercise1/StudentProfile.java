@@ -1,4 +1,4 @@
-package week3;
+package week3.exercise1;
 
 public class StudentProfile {
     static String studentFullName = "Alice Nakato";
