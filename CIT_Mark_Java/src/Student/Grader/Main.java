@@ -159,7 +159,6 @@ public class Main {
             }catch (InputMismatchException e){
                 System.out.println("ERROR: Option must be integer");
             }
-
         }
     }
 }
