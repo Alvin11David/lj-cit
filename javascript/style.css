@@ -1,0 +1,91 @@
+/* ── Reset ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f6f9;
+  color: #1a1a2e;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  text-align: center;
+  padding: 60px 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 480px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+button {
+  background-color: #1a1a2e;
+  color: #ffffff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #2d2d44;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.dark-mode {
+  background-color: #0f1117;
+  color: #e2e8f0;
+}
+
+.dark-mode .container {
+  background-color: #1e2330;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode button {
+  background-color: #60a5fa;
+  color: #0f1117;
+}
+
+.dark-mode button:hover {
+  background-color: #93c5fd;
+}
+
+@media (max-width: 540px) {
+  .container {
+    padding: 40px 24px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+  }
+}
