@@ -35,3 +35,6 @@ SELECT name,reg_number FROM students;
 SELECT * FROM students where gpa>= 3.5 order by gpa DESC;
 
 SELECT * FROM STUDENTS WHERE age>21 AND is_active = TRUE;
+
+--Students whose name starts with the letter "A" (use LIKE)
+SELECT * FROM students WHERE name LIKE 'A%';
