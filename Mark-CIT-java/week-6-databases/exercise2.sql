@@ -31,3 +31,5 @@ INSERT INTO students (name, reg_number, age, gpa, is_active) VALUES
 
 
 SELECT name,reg_number FROM students;
+
+SELECT * FROM students where gpa>= 3.5 order by gpa DESC;
