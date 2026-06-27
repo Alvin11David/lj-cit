@@ -1,0 +1,62 @@
+.back-button{
+    background-color: white;
+    border-radius: 3px;
+    border-color: black;
+    cursor: pointer;
+    
+        }
+    .numbers {
+        color: purple;
+        text-decoration: underline;
+    }
+    
+    .next-button {
+        background-color: white;
+    border-radius: 3px;
+    border-color: black;
+    cursor: pointer;
+    }
+    
+    .stretch-button {
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        transition: transform 0.3s ease;
+    }
+    
+    .stretch-button:hover {
+        transform: scale(1.2);
+    }
+    .shadow-button {
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        transition: all 0.2s ease;
+    }
+    
+    .shadow-button:active {
+        box-shadow: none;
+        transform: translateY(3px);
+    }
+    .one-button,
+    .two-button,
+    .three-button {
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+    }
+    
+    .one-button:hover,
+    .two-button:hover,
+    .three-button:hover {
+        transform: scaleX(1.3);
+    }

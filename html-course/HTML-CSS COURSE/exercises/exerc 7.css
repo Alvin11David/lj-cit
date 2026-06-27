@@ -1,0 +1,81 @@
+.mee {
+    width: 200px;
+    border-radius: 10px;
+}
+
+.mee-2 {
+    width: 200px;
+}
+
+.mee-3 {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+object-fit: cover;
+}
+
+.email {
+    font-family: poppins;
+    margin-bottom: 0;
+    color: rgb(58, 56, 56);
+}
+
+.text {
+    margin-top: 0;
+}
+
+.by {
+    font-family: poppins;
+    color: rgb(58, 56, 56);
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.agree-button {
+    background-color: rgb(6, 174, 224);
+    color: white;
+    font-family: poppins;
+    border-radius: 100px;
+    border: none;
+    margin-top: 0;
+}
+
+.google {
+border-radius: 100px;
+border: none;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+padding: auto;
+}
+
+.tweet-box {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.profile {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+object-fit: cover;
+float: left;
+}
+
+.tweet-text {
+font-family: poppins;
+margin: 0;
+padding: 12px;
+float: left; 
+width: 300px;
+border: none;
+outline: none;
+font-size: 18px;
+}
+
+.tweet-button {
+background-color: rgb(6, 174, 224);
+color: white;
+font-family: poppins;
+border-radius: 100px;
+border: none;
+}

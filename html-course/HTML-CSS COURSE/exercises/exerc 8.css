@@ -1,0 +1,90 @@
+.name,
+.email {
+    display: block;
+}
+
+.name {
+    margin-bottom: 2px;
+}
+
+.email {
+    margin-top: 2px;
+}
+
+.thanks {
+    width: 200px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin: 0;
+}
+
+.yes-button,
+.no-button {
+display: inline-block;
+vertical-align: middle;
+margin-bottom: 5px;
+}
+
+.google-logo {
+margin: 0;
+padding-left: 10px;
+}
+
+.url {
+border-radius: 30px;
+border: none;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+padding: auto;
+font-family: poppins;
+font-size: 12px;
+
+.first,
+.name {
+display: inline-block;
+}
+
+.email {
+display: block;
+}
+
+.sign-button {
+background-color: blue;
+color: white;
+font-family: poppins;
+border-radius: 2px;
+border: none;
+display: inline-block;
+margin-top: 5px;
+}
+
+.now {
+font-family: poppins;
+font-weight: bold;
+}
+
+.pickup,
+.destination {
+display: block;
+margin-top: 2px;
+background-color: rgb(231, 231, 231);
+border: none;
+font-size: smaller;
+}
+
+.request-button {
+background-color: black;
+color: white;
+font-family: poppins;
+font-size: smaller;
+border: none;
+margin-top: 2px;
+}
+
+.later-button {
+background-color: rgb(231, 231, 231);
+border-radius: 2px;
+border: none;
+margin-top: 30px;
+padding-top: 3px;
+padding-bottom: 3px;
+}

@@ -1,0 +1,160 @@
+
+            .font {
+                font-family: tahoma;
+              font-weight: bold;
+            }
+            
+            .course {
+                font-family: verdana;
+                font-weight: bold;
+                margin-bottom: 2;
+            }
+            
+            .pro {
+                font-family: verdana;
+                color: rgb(96, 96, 96);
+                margin-top: 0;
+            }
+            
+            .dev {
+                font-family: verdana;
+                width: 300px;
+            }
+            
+            .get-button {
+                color: white;
+                background-color: green;
+                border-radius: 3px;
+                border: none;
+                font-family: verdana;
+            }
+            
+            .big {
+                font-family: arial;
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+            
+            .sales {
+                font-family: arial;
+                color: red;
+                font-style: italic;
+                font-size: small;
+                margin-top: 0;
+            }
+            
+            .shopping {
+                font-family: arial;
+            font-weight: bold;
+            }
+            
+            .apple {
+                font-family: arial;
+                text-align: center;
+                font-size: small;
+            }
+            
+            .learn {
+                font-family: arial;
+                color: blue;
+                font-size: small;
+                
+            }
+            
+            .new {
+                font-family: arial;
+                color: red;
+                font-size: smaller;
+                text-align: center;
+            }
+            
+            .macbook {
+                font-family: arial;
+                text-align: center;
+                font-size: medium;
+                margin-bottom: 2;
+            }
+            
+            .super {
+                font-family: arial;
+                text-align: center;
+                font-size: x-large;
+                font-weight: bold;
+                margin-bottom: 2;
+                margin-top: 2;
+            }
+            
+            .price {
+                font-family: arial;
+                font-size: smaller;
+                text-align: center;
+                margin-top: 3;
+            }
+            
+            .buy-button {
+            background-color: blue;
+            color: white;
+            font-family: arial;
+            border: none;
+            border-radius: 50px
+            }
+            
+            .numbers {
+                font-family: arial;
+                font-size: larger;
+                margin-bottom: 0;
+            }
+            
+            .span {
+                font-family: arial;
+                color: rgb(96, 96, 96);
+                font-size: smaller;
+                margin-bottom: 1;
+            }
+            
+            .today {
+                font-family: arial;
+                color: green;
+                font-size: small;
+                margin-top: 1;
+            }
+            
+            .after {
+            font-family: arial;
+            font-size: small;
+            color: rgb(96, 96, 96);
+            }
+            
+            .span {
+                font-family: arial;
+                color: red;
+                font-size: small;
+            }
+            
+            strong {
+                font-family: arial;
+                margin-bottom: 1;
+            }
+            
+            .free {
+                font-family: arial;
+                margin-bottom: 1;
+                
+            }
+            
+            .web {
+                font-family: arial;
+                width: 500px;
+                margin-top: 1;
+            }
+            
+            .here{
+                font-family: arial;
+            }
+            
+            .span{
+            font-family: arial;
+            color: aqua;
+            }
+            
+         

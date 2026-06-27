@@ -1,0 +1,43 @@
+.back{
+    color: rgb(0, 113, 133);
+}
+
+.back:hover{
+    color: rgb(211, 142, 14);
+}
+
+.price{
+color: rgb(0, 118,  0);
+font-weight: bold;
+font-size: 18px;
+}
+
+.add-button {
+    background-color: rgb(255, 216, 20);
+    border-radius: 60px;
+    color: black;
+    border: none;
+}
+
+.add-button:hover {
+background-color: rgb(184, 184, 16);
+}
+
+.add-button:active{
+opacity: 0.7;
+}
+
+.buy-button {
+background-color: rgb(255, 164, 28);
+color: black;
+border-radius: 60px;
+border: none;
+}
+
+.buy-button:hover {
+background-color: rgb(136, 87, 15);
+}
+
+.buy-button:active{
+opacity: 0.7;
+}
