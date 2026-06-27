@@ -20,7 +20,7 @@ console.log("All names:", names);
 
 let total = 0;
 students.forEach((student) => {
-  total = total + student.score;
+  total += student.score;
 });
 const average = total / students.length;
 console.log("Class average:", average);
