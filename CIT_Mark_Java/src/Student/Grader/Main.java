@@ -1,8 +1,28 @@
 package Student.Grader;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
+
+    public static void loadDatabse(StudentService studentService) throws SQLException {
+        String url = "jdbc:postgresql://localhost:5432/cit_student_db";
+        String username = "postgres";
+        String password = "cit2026";
+
+        Connection connection = DriverManager.getConnection(url,username,password);
+        Statement statement = connection.createStatement();
+        String getAllResultsQuery = "SELECT * FROM STUDENTS";
+        ResultSet resultSet = statement.executeQuery(getAllResultsQuery);
+        while (resultSet.next()){
+            System.out.println("Student Name: " + resultSet.getString("name"));
+            studentService.add(resultSet.getString("registration_number"),new Student(resultSet.getString("registration_number"),resultSet.getString("name")));
+            studentService.getStudentHashMap().get(resultSet.getString("registration_number")).
+                    addScore(resultSet.getInt("sst"),
+                            resultSet.getInt("math"),
+                            resultSet.getInt("sci"),resultSet.getInt("eng"));
+        }
+    }
+
     public static void screen(){
         System.out.println("1. To Add Student: ");
         System.out.println("2. To Add one Score");
@@ -17,6 +37,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         GradeCalculator gradeCalculator = new GradeCalculator();
         StudentService studentService = new StudentService();
+
+
+        loadDatabse(studentService);
+
+
         while(true){
             screen();
             try{
@@ -154,6 +179,7 @@ public class Main {
                 } else if (option==0) {
                     System.out.println("Closing System...");
                     scanner.close();
+                    studentService.saveToDatabase();
                     break;
                 }else {
                     System.out.println("ERROR: Invalid Option. Please Try Again....");
