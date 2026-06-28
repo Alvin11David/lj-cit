@@ -1,0 +1,10 @@
+-- trade off analysis
+-- arch decisions, design and implementation decisions
+-- adapter among dbs and APIs
+-- uber, menzo fintech in uk ,netflix database use case postgresql,cassandra infoque.com
+-- sql Vs noSQL
+-- SOLID
+-- Injecting abstract class
+-- pyramid of doom
+-- singleton pattern
+-- lift up jesus kampala youtube
