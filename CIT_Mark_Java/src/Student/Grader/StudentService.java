@@ -46,8 +46,14 @@ public class StudentService {
     }
 
     public void saveToDatabase() throws SQLException {
-        String insertStudentQuery = "INSERT INTO STUDENTS(name,registration_number,sst,math,sci,eng) VALUES(?,?,?,?,?,?)"+
-                "ON CONFLICT (registration_number) DO NOTHING";;
+        String insertStudentQuery =
+                "INSERT INTO STUDENTS (name, registration_number, sst, math, sci, eng) VALUES (?, ?, ?, ?, ?, ?) " +
+                        "ON CONFLICT (registration_number) DO UPDATE SET " +
+                        "sst = EXCLUDED.sst, " +
+                        "math = EXCLUDED.math, " +
+                        "sci = EXCLUDED.sci, " +
+                        "eng = EXCLUDED.eng, " +
+                        "name = EXCLUDED.name";
         PreparedStatement preparedStatement = connection.prepareStatement(insertStudentQuery);
         for(String registrationNumber : studentHashMap.keySet()){
             preparedStatement.setString(1, studentHashMap.get(registrationNumber).getName());
