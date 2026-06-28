@@ -1,4 +1,5 @@
 package Student.Grader;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
@@ -12,7 +13,7 @@ public class Main {
         System.out.println("7. To Get scores of a Student: ");
         System.out.println("0. To Close System: ");
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         GradeCalculator gradeCalculator = new GradeCalculator();
         StudentService studentService = new StudentService();
@@ -71,6 +72,7 @@ public class Main {
                             scanner.nextLine();
                             if(math>=0 && math<=100){
                                 studentService.getStudentHashMap().get(registrationNumber).addScore("maths",math);
+
                             }else {
                                 System.out.println("ERROR: Scores lie between 0 and 100 inclusive");
                             }
@@ -161,4 +163,10 @@ public class Main {
             }
         }
     }
+
+
+
+
+
+
 }
