@@ -22,14 +22,6 @@ public class StudentService {
 
     public void add(String registrationNumber, Student student) throws SQLException {
         studentHashMap.put(registrationNumber,student);
-        /*
-        String insertStudentQuery = "INSERT INTO STUDENTS(name,registration_number) VALUES(?,?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(insertStudentQuery);
-        preparedStatement.setString(1,student.getName());
-        preparedStatement.setString(2,student.getRegistrationNumber());
-        preparedStatement.execute();
-        */
-
     }
 
     public String find(String registrationNumber){
@@ -64,10 +56,7 @@ public class StudentService {
             preparedStatement.setInt(6,studentHashMap.get(registrationNumber).getScoresList()[3]);
             preparedStatement.execute();
         }
-
-
     }
-
     public void list(String registrationNumber){
         System.out.println(studentHashMap.get(registrationNumber));
     }
