@@ -9,9 +9,8 @@ class Student {
     private double scienceScore;
     private double socialStudiesScore;
 
-    public Student(int studentId, String name, double mathScore, double englishScore, double scienceScore, double socialStudiesScore) {
+    public Student(String name, double mathScore, double englishScore, double scienceScore, double socialStudiesScore) {
         this.name = name;
-        this.studentId = studentId;
         this.mathScore = mathScore;
         this.englishScore = englishScore;
         this.scienceScore = scienceScore;
@@ -20,6 +19,10 @@ class Student {
 
     public int getStudentId() {
         return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {

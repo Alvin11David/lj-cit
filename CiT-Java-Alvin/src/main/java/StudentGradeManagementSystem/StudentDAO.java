@@ -35,13 +35,14 @@ public class StudentDAO {
 
             while (result_set.next()) {
                 Student s = new Student(
-                        result_set.getInt("student_id"),
                         result_set.getString("name"),
                         result_set.getDouble("math_score"),
                         result_set.getDouble("english_score"),
                         result_set.getDouble("science_score"),
                         result_set.getDouble("sst_score")
                 );
+
+                s.setStudentId(result_set.getInt("student_id"));
 
                 students.add(s);
             }
