@@ -1,1 +1,0 @@
-rootProject.name = "cit-database-student-mgt-system"
