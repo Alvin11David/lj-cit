@@ -3,8 +3,10 @@ package StudentGradeManagementSystem;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StudentDAO {
+
     public void insertStudent(Student student) {
         String sql = "INSERT INTO students (registration_number, name, math_score, english_score, science_score, social_studies_score) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -34,23 +36,88 @@ public class StudentDAO {
              ResultSet result_set = stmt.executeQuery(sql)) {
 
             while (result_set.next()) {
-                Student s = new Student(
-                        result_set.getString("registration_number"),
-                        result_set.getString("name"),
-                        result_set.getDouble("math_score"),
-                        result_set.getDouble("english_score"),
-                        result_set.getDouble("science_score"),
-                        result_set.getDouble("social_studies_score")
-                );
-
-                s.setStudentId(result_set.getInt("student_id"));
-
-                students.add(s);
+                students.add(mapRow(result_set));
             }
         } catch (SQLException e) {
             System.out.println("Error loading students: " + e.getMessage());
         }
 
         return students;
+    }
+
+    /**
+     * Looks up a single student by their registration number.
+     * Used by the CLI's "look up student" feature.
+     */
+    public Optional<Student> findByRegistrationNumber(String registrationNumber) {
+        String sql = "SELECT student_id, registration_number, name, math_score, english_score, science_score, social_studies_score " +
+                "FROM students WHERE registration_number = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, registrationNumber);
+
+            try (ResultSet result_set = stmt.executeQuery()) {
+                if (result_set.next()) {
+                    return Optional.of(mapRow(result_set));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error looking up student: " + e.getMessage());
+        }
+
+        return Optional.empty();
+    }
+
+    /**
+     * Updates the four subject scores for an existing student, identified by registration number.
+     * Used by the CLI's "record scores" feature when the student already exists.
+     */
+    public boolean updateScores(String registrationNumber, double math, double english, double science, double socialStudies) {
+        String sql = "UPDATE students SET math_score = ?, english_score = ?, science_score = ?, social_studies_score = ? " +
+                "WHERE registration_number = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDouble(1, math);
+            stmt.setDouble(2, english);
+            stmt.setDouble(3, science);
+            stmt.setDouble(4, socialStudies);
+            stmt.setString(5, registrationNumber);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error updating scores: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean existsByRegistrationNumber(String registrationNumber) {
+        String sql = "SELECT 1 FROM students WHERE registration_number = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, registrationNumber);
+            try (ResultSet result_set = stmt.executeQuery()) {
+                return result_set.next();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking student existence: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private Student mapRow(ResultSet result_set) throws SQLException {
+        Student s = new Student(
+                result_set.getString("registration_number"),
+                result_set.getString("name"),
+                result_set.getDouble("math_score"),
+                result_set.getDouble("english_score"),
+                result_set.getDouble("science_score"),
+                result_set.getDouble("social_studies_score")
+        );
+        s.setStudentId(result_set.getInt("student_id"));
+        return s;
     }
 }
