@@ -1,6 +1,6 @@
 package StudentGradeManagementSystem;
 
-class Student {
+public class Student {
 
     private String name;
     private String registrationNumber;
@@ -92,7 +92,7 @@ class Student {
     @Override
     public String toString() {
         return String.format(
-                "ID: %s | RegNo: %-10s | Name: %-15s | Math: %.1f | English: %.1f | Science: %.1f | SST: %.1f | Average: %.2f | Grade: %s",
+                "ID: %-3s | RegNo: %-10s | Name: %-15s | Math: %.1f | English: %.1f | Science: %.1f | SST: %.1f | Average: %.2f | Grade: %s",
                 studentId, registrationNumber, name, mathScore, englishScore, scienceScore, socialStudiesScore,
                 getAverageScore(), getLetterGrade());
     }

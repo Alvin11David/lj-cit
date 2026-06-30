@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class StudentDAO {
 
-    public void insertStudent(Student student) {
+    public boolean insertStudent(Student student) {
         String sql = "INSERT INTO students (registration_number, name, math_score, english_score, science_score, social_studies_score) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -22,14 +22,16 @@ public class StudentDAO {
 
             stmt.executeUpdate();
             System.out.println("Student inserted: " + student.getName());
+            return true;
         } catch (SQLException e) {
             System.out.println("Error inserting student: " + e.getMessage());
+            return false;
         }
     }
 
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
-        String sql = "SELECT student_id, registration_number, name, math_score, english_score, science_score, social_studies_score FROM students";
+        String sql = "SELECT student_id, registration_number, name, math_score, english_score, science_score, social_studies_score FROM students ORDER BY student_id";
 
         try (Connection connection = DatabaseConnection.getConnection();
              Statement stmt = connection.createStatement();
@@ -45,10 +47,6 @@ public class StudentDAO {
         return students;
     }
 
-    /**
-     * Looks up a single student by their registration number.
-     * Used by the CLI's "look up student" feature.
-     */
     public Optional<Student> findByRegistrationNumber(String registrationNumber) {
         String sql = "SELECT student_id, registration_number, name, math_score, english_score, science_score, social_studies_score " +
                 "FROM students WHERE registration_number = ?";
@@ -69,10 +67,6 @@ public class StudentDAO {
         return Optional.empty();
     }
 
-    /**
-     * Updates the four subject scores for an existing student, identified by registration number.
-     * Used by the CLI's "record scores" feature when the student already exists.
-     */
     public boolean updateScores(String registrationNumber, double math, double english, double science, double socialStudies) {
         String sql = "UPDATE students SET math_score = ?, english_score = ?, science_score = ?, social_studies_score = ? " +
                 "WHERE registration_number = ?";
