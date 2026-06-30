@@ -1,5 +1,5 @@
 package mark.practice;
-
+import java.util.Arrays;
 
 
 class NumberType<T extends Number>{
@@ -12,7 +12,6 @@ class NumberType<T extends Number>{
         return value;
     }
 }
-
 
 class Test<T>{
     T value;
@@ -35,6 +34,11 @@ class Test<T>{
 
 
 public class Generics {
+
+    public static <T extends Number> double average(T[] array){
+        return Arrays.stream(array).mapToDouble(n -> n.doubleValue()).average().orElse(0.0);
+    }
+
     public static void main(String[] args){
         Test<String> test1 = new Test<>("Sekibaala Mark");
         System.out.println("Value: "+test1.get());
@@ -50,6 +54,8 @@ public class Generics {
         NumberType<Double> num2 = new NumberType<>(45.12);
         System.out.println("Value: " + num2.getValue());
 
+        Integer[] numbers = {90,34,87,10};
+        System.out.println("Average: " + average(numbers));
 
 
     }
