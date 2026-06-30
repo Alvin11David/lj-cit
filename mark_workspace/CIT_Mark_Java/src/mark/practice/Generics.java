@@ -4,6 +4,12 @@ package mark.practice;
 class Test<T>{
     T value;
 
+    Test(T value){
+        this.value = value;
+    }
+
+    Test(){
+    }
 
 
     void set(T value){
@@ -19,8 +25,7 @@ class Test<T>{
 
 public class Generics {
     public static void main(String[] args){
-        Test<String> test1 = new Test<>();
-        test1.set("Sekibaala Mark");
+        Test<String> test1 = new Test<>("Sekibaala Mark");
         System.out.println("Value: "+test1.get());
 
         Test<Integer> test2 = new Test<>();
