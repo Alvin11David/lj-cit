@@ -55,7 +55,7 @@ public class Generics {
         System.out.println("Value: " + num2.getValue());
 
         Integer[] numbers = {90,34,87,10};
-        System.out.println("Average: " + average(numbers));
+        System.out.println("Average: " + average(new Integer[] {90,45,90}));
 
 
     }

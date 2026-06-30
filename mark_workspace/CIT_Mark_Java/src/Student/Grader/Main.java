@@ -19,7 +19,6 @@ public class Main {
 
     }
 
-
     public static void handleAddingOneScore(StudentService studentService) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Registration Number: ");
@@ -170,7 +169,6 @@ public class Main {
         System.out.println("Closing System...");
         studentService.saveToDatabase();
     }
-
 
     public static void loadDatabase(StudentService studentService) throws SQLException {
         String url = "jdbc:postgresql://localhost:5432/cit_student_db";
