@@ -1,6 +1,8 @@
 package StudentGradeManagementSystem;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -8,6 +10,7 @@ public class Main {
 
     private static final StudentDAO dao = new StudentDAO();
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String[] SUBJECTS = {"Math", "English", "Science", "Social Studies"};
 
     public static void main(String[] args) {
         boolean running = true;
@@ -56,13 +59,13 @@ public class Main {
         System.out.print("Enter name: ");
         String name = scanner.nextLine().trim();
 
-        double math = readScore("Math score (0-100): ");
-        double english = readScore("English score (0-100): ");
-        double science = readScore("Science score (0-100): ");
-        double social = readScore("Social Studies score (0-100): ");
+        Map<String, Double> scores = readAllScores();
 
         try {
-            Student student = new Student(regNo, name, math, english, science, social);
+            Student student = new Student(regNo, name);
+            for (Map.Entry<String, Double> entry : scores.entrySet()) {
+                student.setScore(entry.getKey(), entry.getValue());
+            }
             dao.insertStudent(student);
         } catch (IllegalArgumentException e) {
             System.out.println("Could not add student: " + e.getMessage());
@@ -78,12 +81,9 @@ public class Main {
             return;
         }
 
-        double math = readScore("Math score (0-100): ");
-        double english = readScore("English score (0-100): ");
-        double science = readScore("Science score (0-100): ");
-        double social = readScore("Social Studies score (0-100): ");
+        Map<String, Double> scores = readAllScores();
 
-        boolean updated = dao.updateScores(regNo, math, english, science, social);
+        boolean updated = dao.updateScores(regNo, scores);
         System.out.println(updated ? "Scores updated." : "Update failed.");
     }
 
@@ -114,7 +114,15 @@ public class Main {
         }
     }
 
-    // ---- Input helpers ----
+
+
+    private static Map<String, Double> readAllScores() {
+        Map<String, Double> scores = new LinkedHashMap<>();
+        for (String subject : SUBJECTS) {
+            scores.put(subject, readScore(subject + " score (0-100): "));
+        }
+        return scores;
+    }
 
     private static int readInt(String prompt) {
         while (true) {
