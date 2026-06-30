@@ -19,7 +19,6 @@ public class Main {
 
     }
 
-
     public static void handleAddingOneScore(StudentService studentService) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Registration Number: ");
@@ -62,7 +61,7 @@ public class Main {
         System.out.println("Enter Registration Number: ");
         String registrationNumber = scanner.nextLine();
         if(!studentService.getStudentHashMap().containsKey(registrationNumber)){
-            System.out.println("Registration Number Unkown...");
+            System.out.println("Registration Number Unknown...");
             return;
         }
 
@@ -171,7 +170,6 @@ public class Main {
         studentService.saveToDatabase();
     }
 
-
     public static void loadDatabase(StudentService studentService) throws SQLException {
         String url = "jdbc:postgresql://localhost:5432/cit_student_db";
         String username = "postgres";
@@ -207,31 +205,25 @@ public class Main {
         StudentService studentService = new StudentService();
         loadDatabase(studentService);
 
+        menuLoop:
         while(true){
             screen();
             try{
                 int option = scanner.nextInt();
                 scanner.nextLine();
-                if(option==1){
-                    handleAddingStudent(studentService);
-                } else if (option==2) {
-                    handleAddingOneScore(studentService);
-                } else if (option==3) {
-                    handleAddingAllStudentScores(studentService);
-                } else if (option==4) {
-                    handleGettingAverage(studentService);
-                } else if (option==5) {
-                    handleGettingGrade(studentService,gradeCalculator);
-                } else if (option==6) {
-                    studentService.list();
-                } else if (option==7) {
-                    handleGettingStudentScore(studentService);
-                } else if (option==0) {
-                    handleClosingAndSaving(studentService);
-                    scanner.close();
-                    break;
-                }else {
-                    System.out.println("ERROR: Invalid Option. Please Try Again....");
+                switch (option){
+                    case 1 : handleAddingStudent(studentService);break;
+                    case 2: handleAddingOneScore(studentService);break;
+                    case 3: handleAddingAllStudentScores(studentService);break;
+                    case 4: handleGettingAverage(studentService);break;
+                    case 5: handleGettingGrade(studentService,gradeCalculator);break;
+                    case 6: studentService.list();break;
+                    case 7: handleGettingStudentScore(studentService);break;
+                    case 0:
+                            handleClosingAndSaving(studentService);
+                            scanner.close();
+                            break menuLoop;
+                    default:System.out.println("ERROR: Invalid Option. Please Try Again....");
                 }
             }catch (InputMismatchException e){
                 System.out.println("ERROR: Option must be integer");
