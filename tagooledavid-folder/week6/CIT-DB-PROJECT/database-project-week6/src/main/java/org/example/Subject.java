@@ -1,6 +1,7 @@
 package org.example;
 
 public class Subject {
+    private int subject_id;
     private String code;
     private String name;
 
@@ -8,6 +9,14 @@ public class Subject {
         this.code = code;
         this.name = name;
     }
+
+    Subject(int subject_id, String code, String name){
+        this.subject_id = subject_id;
+        this.code = code;
+        this.name = name;
+    }
+
+    public int getSubject_id() { return subject_id; }
 
     public String getCode() {
         return code;

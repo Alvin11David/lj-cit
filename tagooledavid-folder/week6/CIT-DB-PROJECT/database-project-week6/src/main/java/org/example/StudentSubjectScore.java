@@ -24,5 +24,15 @@ public class StudentSubjectScore {
         this.subject_id = subject_id;
     }
 
+    public Integer getStudent_id() {
+        return student_id;
+    }
 
+    public Integer getSubject_id() {
+        return subject_id;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
 }

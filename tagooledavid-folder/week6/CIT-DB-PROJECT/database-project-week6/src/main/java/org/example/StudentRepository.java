@@ -10,9 +10,9 @@ import java.util.List;
 public class StudentRepository implements CRUDRepository<Student,String>{
     @Override
     public void save(Student student) {
-        String sql ="INSERT INTO student VALUES(regno,name) (??)";
+        String sql ="INSERT INTO student (regno,name) VALUES (?,?)";
         try(Connection conn = DBConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)
+            PreparedStatement ps = conn.prepareStatement(sql);
         ){
             ps.setString(1,student.getRegNo());
             ps.setString(2,student.getName());
@@ -35,9 +35,10 @@ public class StudentRepository implements CRUDRepository<Student,String>{
 
 
         if (rs.next()){
+            int student_id = rs.getInt("student_id");
             String regNo = rs.getString("regno");
             String name = rs.getString("name");
-            return new Student(regNo,name);
+            return new Student(student_id, regNo, name);
         }
 
 
@@ -62,9 +63,10 @@ public class StudentRepository implements CRUDRepository<Student,String>{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
+                int student_id = rs.getInt("student_id");
                 String regNo = rs.getString("regno");
                 String name = rs.getString("name");
-                students.add(new Student(regNo,name));
+                students.add(new Student(student_id, regNo, name));
             }
         } catch (SQLException e){
             e.printStackTrace();

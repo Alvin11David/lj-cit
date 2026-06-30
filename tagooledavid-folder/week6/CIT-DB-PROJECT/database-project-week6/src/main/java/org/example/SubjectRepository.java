@@ -38,9 +38,10 @@ public class SubjectRepository implements CRUDRepository<Subject,String> {
 
 
             if (rs.next()){
+                int subject_id = rs.getInt("subject_id");
                 String code = rs.getString("code");
                 String name = rs.getString("name");
-                return new Subject(code,name);
+                return new Subject(subject_id, code, name);
             }
 
         } catch( SQLException e){
@@ -61,9 +62,10 @@ public class SubjectRepository implements CRUDRepository<Subject,String> {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
+                int subject_id = rs.getInt("subject_id");
                 String code = rs.getString("code");
                 String name = rs.getString("name");
-                subjects.add(new Subject(code,name));
+                subjects.add(new Subject(subject_id, code, name));
             }
         } catch (SQLException e){
             e.printStackTrace();
