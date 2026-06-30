@@ -25,7 +25,7 @@ public class StudentRepository implements CRUDRepository<Student,String>{
 
     @Override
     public Student findById(String s) {
-        String sql = "SELECT regno,name FROM student WHERE regno = ?";
+        String sql = "SELECT student_id,regno,name FROM student WHERE regno = ?";
 
         try (Connection conn = DBConnection.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)
@@ -49,7 +49,7 @@ public class StudentRepository implements CRUDRepository<Student,String>{
 
 
 
-    
+
     @Override
     public List<Student> loadAll() {
         List<Student> students = new ArrayList<>();

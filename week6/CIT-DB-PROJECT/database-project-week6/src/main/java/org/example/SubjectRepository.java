@@ -7,16 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectRepository implements CRUDRepository<Subject,Integer> {
+public class SubjectRepository implements CRUDRepository<Subject,String> {
 
     @Override
     public void save(Subject subject) {
-        String sql = "INSERT INTO subject (name) VALUES (?)";
+        String sql = "INSERT INTO subject (code,name) VALUES (? ?)";
 
         try(Connection conn = DBConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)
         ){
-            ps.setString(1,subject.getName());
+            ps.setString(1,subject.getCode());
+            ps.setString(2,subject.getName());
             ps.executeUpdate();
 
         } catch(SQLException e){
@@ -25,18 +26,21 @@ public class SubjectRepository implements CRUDRepository<Subject,Integer> {
     }
 
     @Override
-    public Subject findById(Integer integer) {
-        String sql = "SELECT subject_id,name FROM subject WHERE subject_id = ?";
+    public Subject findById(String id) {
+        String sql = "SELECT subject_id,code,name FROM subject WHERE code = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
         ){
-            ps.setInt(1,integer);
+            ps.setString(1,id);
 
             ResultSet rs = ps.executeQuery();
 
+
             if (rs.next()){
-                return new Subject(rs.getString("name"));
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+                return new Subject(code,name);
             }
 
         } catch( SQLException e){
@@ -49,7 +53,7 @@ public class SubjectRepository implements CRUDRepository<Subject,Integer> {
     public List<Subject> loadAll() {
         List<Subject> subjects = new ArrayList<>();
 
-        String sql = "SELECT * FROM subject";
+        String sql = "SELECT * FROM subject ORDER BY name ASC ";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)
@@ -57,7 +61,9 @@ public class SubjectRepository implements CRUDRepository<Subject,Integer> {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                subjects.add(new Subject(rs.getString("name")));
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+                subjects.add(new Subject(code,name));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -65,4 +71,5 @@ public class SubjectRepository implements CRUDRepository<Subject,Integer> {
 
         return subjects;
     }
+
 }
