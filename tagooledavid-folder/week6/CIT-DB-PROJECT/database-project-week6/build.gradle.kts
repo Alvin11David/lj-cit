@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation("org.postgresql:postgresql:42.7.3")
+    implementation("io.github.cdimascio:dotenv-java:3.0.0")
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

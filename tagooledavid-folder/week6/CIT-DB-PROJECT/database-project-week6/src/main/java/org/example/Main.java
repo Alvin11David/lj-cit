@@ -10,6 +10,7 @@ public class Main {
         StudentRepository studentRepo = new StudentRepository();
         SubjectRepository subjectRepo = new SubjectRepository();
         StudentSubjectScoreRepository scoreRepo = new StudentSubjectScoreRepository();
+        List<Student> students = studentRepo.loadAll();
 
         boolean running = true;
 
@@ -24,7 +25,7 @@ public class Main {
             System.out.println("  [4] View all student averages");
             System.out.println("  [5] View student details by Reg No");
             System.out.println("  [6] Reset a student marks to zero");
-            System.out.println("  [7] Clear all scores");
+            System.out.println("  [7] Clear the database");
             System.out.println("  [0] Exit");
             System.out.println("=========================================");
             System.out.print("Choose an option: ");
@@ -44,16 +45,11 @@ public class Main {
                     break;
 
                 case 2:
-                    List<Student> students = studentRepo.loadAll();
-                    System.out.println("\n--- All Students ---");
-                    System.out.printf("%-10s %-20s%n", "Reg No", "Name");
-                    System.out.println("--------------------");
-                    for (Student s : students) {
-                        System.out.printf("%-10s %-20s%n", s.getRegNo(), s.getName());
-                    }
+                    studentRepo.printStudentNamesAndRegNosNicely(students);
                     break;
 
                 case 3:
+                    studentRepo.printStudentNamesAndRegNosNicely(students);
                     System.out.print("Enter student registration number: ");
                     String targetRegNo = scanner.nextLine();
                     Student foundStudent = studentRepo.findById(targetRegNo);
@@ -92,12 +88,14 @@ public class Main {
                     break;
 
                 case 5:
+                    studentRepo.printStudentNamesAndRegNosNicely(students);
                     System.out.print("Enter student registration number: ");
                     String detailRegNo = scanner.nextLine();
                     scoreRepo.getStudentDetailsWithRegistrationNumber(detailRegNo);
                     break;
 
                 case 6:
+                    studentRepo.printStudentNamesAndRegNosNicely(students);
                     System.out.print("Enter student registration number: ");
                     String resetRegNo = scanner.nextLine();
                     scoreRepo.resetStudentMarksToZero(resetRegNo);

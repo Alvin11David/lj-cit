@@ -73,4 +73,13 @@ public class StudentRepository implements CRUDRepository<Student,String>{
         }
         return students;
     }
+
+    public static void printStudentNamesAndRegNosNicely(List<Student> students){
+        System.out.println("\n--- All Students ---");
+        System.out.printf("%-10s %-20s%n", "Reg No", "Name");
+        System.out.println("--------------------");
+        for (Student s : students) {
+            System.out.printf("%-10s %-20s%n", s.getRegNo(), s.getName());
+        }
+    }
 }

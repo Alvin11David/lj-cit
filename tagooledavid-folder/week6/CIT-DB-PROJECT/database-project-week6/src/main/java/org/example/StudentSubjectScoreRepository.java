@@ -160,11 +160,14 @@ public class StudentSubjectScoreRepository implements CRUDRepository<StudentSubj
 
     // to implement
     public void clearTheDatabase(){
-        String sql = "DELETE FROM studentsubjectscore";
+        String sql1 = "DELETE FROM studentsubjectscore";
+        String sql2 = "DELETE FROM student";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)
+             PreparedStatement ps1 = conn.prepareStatement(sql1);
+             PreparedStatement ps2 = conn.prepareStatement(sql2)
         ) {
-            ps.executeUpdate();
+            ps1.executeUpdate();
+            ps2.executeUpdate();
             System.out.println("All student subject scores have been cleared.");
         } catch (SQLException e) {
             e.printStackTrace();

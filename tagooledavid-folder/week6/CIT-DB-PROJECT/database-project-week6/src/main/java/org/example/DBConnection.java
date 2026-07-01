@@ -1,13 +1,16 @@
 package org.example;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String USER = "postgres";
-    private static final String URL = "jdbc:postgresql://localhost/studentmanagement";
-    private static final String PASSWORD = "mugwadavid";
+    private static final Dotenv dotenv = Dotenv.load();
+    private static final String USER = dotenv.get("DB_USER");
+    private static final String URL = dotenv.get("DB_URL");
+    private static final String PASSWORD = dotenv.get("DB_PASSWORD");
 
 
     public static Connection getConnection() throws SQLException {
