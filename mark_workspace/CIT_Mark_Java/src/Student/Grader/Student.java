@@ -1,3 +1,8 @@
+
+
+
+
+
 package Student.Grader;
 import java.util.stream.Stream;
 import java.util.Arrays;
@@ -12,6 +17,8 @@ public class Student {
         this.registrationNumber = registrationNumber;
         this.name = name;
     }
+
+
 
     public void addScore(int sst, int maths,int sci , int eng){
         scoresList[0] = sst;

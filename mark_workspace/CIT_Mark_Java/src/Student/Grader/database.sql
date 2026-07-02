@@ -14,3 +14,4 @@ INSERT INTO STUDENTS (name, registration_number, sst, math, sci, eng) VALUES
 ('Charlie Brown', 'R003', 95, 88, 91, 94),
 ('Diana Prince', 'R004', 82, 95, 89, 92);
 
+
