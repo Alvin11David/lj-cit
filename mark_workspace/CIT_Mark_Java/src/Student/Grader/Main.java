@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 package Student.Grader;
 import java.sql.*;
 import java.util.InputMismatchException;
@@ -6,17 +14,17 @@ public class Main {
 
 
     public static void handleAddingStudent(StudentService studentService) throws SQLException {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter Registration Number: ");
-            String registrationNumber = scanner.nextLine();
-            System.out.println("Enter Student Name: ");
-            String name = scanner.nextLine();
-            if(!studentService.getStudentHashMap().containsKey(registrationNumber)){
-                System.out.println("Student Registration Number already exists...!!!");
-                return;
-            }
-            studentService.add(registrationNumber, new Student(registrationNumber, name));
-            System.out.println("Student added successfully....");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Registration Number: ");
+        String registrationNumber = scanner.nextLine();
+        System.out.println("Enter Student Name: ");
+        String name = scanner.nextLine();
+        if(!studentService.getStudentHashMap().containsKey(registrationNumber)){
+            System.out.println("Student Registration Number already exists...!!!");
+            return;
+        }
+        studentService.add(registrationNumber, new Student(registrationNumber, name));
+        System.out.println("Student added successfully....");
 
     }
 
@@ -68,19 +76,19 @@ public class Main {
 
         int math,sci,eng,sst;
         System.out.println("Enter Maths Score: ");
-            try {
-                math = scanner.nextInt();
-                scanner.nextLine();
-            }catch (InputMismatchException e){
-                System.out.println("ERROR: only integers are expected!!");
-                scanner.next();
-                return;
-            }
+        try {
+            math = scanner.nextInt();
+            scanner.nextLine();
+        }catch (InputMismatchException e){
+            System.out.println("ERROR: only integers are expected!!");
+            scanner.next();
+            return;
+        }
 
-            if(!(math>=0 && math<=100)){
-                System.out.println("ERROR: Scores lie between 0 and 100 inclusive");
-                return;
-            }
+        if(!(math>=0 && math<=100)){
+            System.out.println("ERROR: Scores lie between 0 and 100 inclusive");
+            return;
+        }
 
         System.out.println("Enter Science Score: ");
         try {
@@ -221,9 +229,9 @@ public class Main {
                     case 6: studentService.list();break;
                     case 7: handleGettingStudentScore(studentService);break;
                     case 0:
-                            handleClosingAndSaving(studentService);
-                            scanner.close();
-                            break menuLoop;
+                        handleClosingAndSaving(studentService);
+                        scanner.close();
+                        break menuLoop;
                     default:System.out.println("ERROR: Invalid Option. Please Try Again....");
                 }
             }catch (InputMismatchException e){
