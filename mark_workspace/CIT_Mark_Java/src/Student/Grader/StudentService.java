@@ -37,6 +37,8 @@ public class StudentService {
         }
     }
 
+
+
     public void saveToDatabase() throws SQLException {
         String insertStudentQuery =
                 "INSERT INTO STUDENTS (name, registration_number, sst, math, sci, eng) VALUES (?, ?, ?, ?, ?, ?) " +

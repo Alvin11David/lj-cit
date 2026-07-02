@@ -13,6 +13,8 @@ public class Student {
         this.name = name;
     }
 
+
+
     public void addScore(int sst, int maths,int sci , int eng){
         scoresList[0] = sst;
         scoresList[1] = maths;

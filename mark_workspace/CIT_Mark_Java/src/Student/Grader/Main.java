@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
 
+
     public static void handleAddingStudent(StudentService studentService) throws SQLException {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter Registration Number: ");
