@@ -88,7 +88,7 @@ public class StudentSubjectScoreRepository implements CRUDRepository<StudentSubj
         }
     }
 
-    // needs implementation
+
     public double calculateStudentAverage(){
         double average = 0.0;
         String sql = "SELECT AVG(score) AS avg_score FROM studentsubjectscore";
@@ -131,7 +131,7 @@ public class StudentSubjectScoreRepository implements CRUDRepository<StudentSubj
         }
     }
 
-    // to implement
+
     public void getStudentDetailsWithRegistrationNumber(String studentRegNo){
         String sql = "SELECT s.regno, s.name, sub.name AS subject_name, sss.score " +
                      "FROM student s " +
@@ -158,7 +158,7 @@ public class StudentSubjectScoreRepository implements CRUDRepository<StudentSubj
         }
     }
 
-    // to implement
+
     public void clearTheDatabase(){
         String sql1 = "DELETE FROM studentsubjectscore";
         String sql2 = "DELETE FROM student";
@@ -174,7 +174,7 @@ public class StudentSubjectScoreRepository implements CRUDRepository<StudentSubj
         }
     }
 
-    // reset a student marks to 0
+
     public void resetStudentMarksToZero(String studentRegNo){
         String sql = "UPDATE studentsubjectscore SET score = 0 " +
                      "WHERE student_id = (SELECT student_id FROM student WHERE regno = ?)";

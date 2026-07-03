@@ -11,7 +11,7 @@ public class SubjectRepository implements CRUDRepository<Subject,String> {
 
     @Override
     public void save(Subject subject) {
-        String sql = "INSERT INTO subject (code,name) VALUES (? ?)";
+        String sql = "INSERT INTO subject (code,name) VALUES (?, ?)";
 
         try(Connection conn = DBConnection.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)

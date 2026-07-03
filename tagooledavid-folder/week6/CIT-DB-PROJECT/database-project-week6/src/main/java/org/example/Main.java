@@ -10,7 +10,7 @@ public class Main {
         StudentRepository studentRepo = new StudentRepository();
         SubjectRepository subjectRepo = new SubjectRepository();
         StudentSubjectScoreRepository scoreRepo = new StudentSubjectScoreRepository();
-        List<Student> students = studentRepo.loadAll();
+
 
         boolean running = true;
 
@@ -45,11 +45,11 @@ public class Main {
                     break;
 
                 case 2:
-                    studentRepo.printStudentNamesAndRegNosNicely(students);
+                    StudentRepository.printStudentNamesAndRegNosNicely(studentRepo.loadAll());
                     break;
 
                 case 3:
-                    studentRepo.printStudentNamesAndRegNosNicely(students);
+                    StudentRepository.printStudentNamesAndRegNosNicely(studentRepo.loadAll());
                     System.out.print("Enter student registration number: ");
                     String targetRegNo = scanner.nextLine();
                     Student foundStudent = studentRepo.findById(targetRegNo);
@@ -88,14 +88,14 @@ public class Main {
                     break;
 
                 case 5:
-                    studentRepo.printStudentNamesAndRegNosNicely(students);
+                    StudentRepository.printStudentNamesAndRegNosNicely(studentRepo.loadAll());
                     System.out.print("Enter student registration number: ");
                     String detailRegNo = scanner.nextLine();
                     scoreRepo.getStudentDetailsWithRegistrationNumber(detailRegNo);
                     break;
 
                 case 6:
-                    studentRepo.printStudentNamesAndRegNosNicely(students);
+                    StudentRepository.printStudentNamesAndRegNosNicely(studentRepo.loadAll());
                     System.out.print("Enter student registration number: ");
                     String resetRegNo = scanner.nextLine();
                     scoreRepo.resetStudentMarksToZero(resetRegNo);

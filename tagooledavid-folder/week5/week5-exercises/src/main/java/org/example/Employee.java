@@ -29,7 +29,7 @@ class SalariedEmployee extends Employee implements Taxable{
     }
 
     @Override
-    public double claculateTax(){
+    public double calculateTax(){
         return (0.18*fixedMonthlySalary);
     }
 }
@@ -50,7 +50,7 @@ class HourlyEmployee extends Employee implements Taxable{
     }
 
     @Override
-    public double claculateTax(){
+    public double calculateTax(){
         return (0.18*rate*hours);
     }
 }
@@ -63,12 +63,12 @@ class TestOutAbstractionAndInterfaces{
         SalariedEmployee userOne = new SalariedEmployee("Jacob Jeremiah",2000000.00);
         userOne.clockIn();
         userOne.calculateMonthlyPay();
-        System.out.printf("Jacob Jeremiah's Tax: %.2f%n%n", userOne.claculateTax());
+        System.out.printf("Jacob Jeremiah's Tax: %.2f%n%n", userOne.calculateTax());
         System.out.println("=".repeat(20));
         System.out.println("Hourly Employee");
         HourlyEmployee userTwo = new HourlyEmployee("Alex Mutungi",0.8,12);
         userTwo.clockIn();
         userTwo.calculateMonthlyPay();
-        System.out.printf("Alex Mutungi's Tax: %.2f%n", userTwo.claculateTax());
+        System.out.printf("Alex Mutungi's Tax: %.2f%n", userTwo.calculateTax());
     }
 }

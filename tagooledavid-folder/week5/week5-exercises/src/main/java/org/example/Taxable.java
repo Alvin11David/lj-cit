@@ -1,7 +1,7 @@
 package org.example;
 
 public interface Taxable {
-    double claculateTax();
+    double calculateTax();
 }
 
 

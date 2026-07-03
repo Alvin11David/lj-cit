@@ -29,7 +29,7 @@ class SMSNotification extends Notification {
 
     @Override
     public void send(){
-        System.out.println(message + " ----> Is from SMSNotifiaction class");
+        System.out.println(message + " ----> Is from SMSNotification class");
     }
 }
 
