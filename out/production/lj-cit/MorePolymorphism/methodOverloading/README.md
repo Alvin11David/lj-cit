@@ -1,0 +1,1 @@
+Learnt about method overloading whereby the compiler compiles the code depending on the number of data types used, the parameters used. 

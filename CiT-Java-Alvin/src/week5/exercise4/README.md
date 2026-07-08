@@ -1,0 +1,1 @@
+Learnt about Exception handling were i started with the ArithmenticException handling for calculations to avoid bringing unwanted errors to the users just becaue they have performed an action wrongly.
