@@ -1,1 +1,0 @@
-Leanrt about how to work with Map collections implementing the put the get operations manipulating the data in the collection and also realised that the HashMap stores data randomly.

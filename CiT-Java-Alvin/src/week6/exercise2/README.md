@@ -1,1 +1,0 @@
-Learnt how to read from the database using SELECT and providing querying conditions using WHERE.

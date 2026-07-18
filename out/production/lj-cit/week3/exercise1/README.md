@@ -1,1 +1,0 @@
-Learnt how to work with many variables of different data types and also learnt how to perform concatenation while printing the output in the terminal

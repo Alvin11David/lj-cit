@@ -1,1 +1,0 @@
-Learnt how to apply the different SQL Types like INT, VARCHAR(n) and working with some constraints like the primary key, NOT NULL, UNIQUE  and CREATING Database tables. 

@@ -1,1 +1,0 @@
-Learnt how to work with getters and setters when dealing with encapsulation.
