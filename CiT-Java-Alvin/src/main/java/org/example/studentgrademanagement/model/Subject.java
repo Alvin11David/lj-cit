@@ -1,0 +1,38 @@
+package org.example.studentgrademanagement.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "subjects")
+public class Subject {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "subject_id")
+    private Long subjectId;
+
+    @Column(name = "subject_name", nullable = false, unique = true)
+    private String subjectName;
+
+    public Subject() {}
+
+    public Subject(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+}
