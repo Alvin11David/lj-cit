@@ -17,6 +17,10 @@ console.log(passed);
 const names = students.map(student => student.name);
 console.log(names);
 
-const total = students.reduce((sum, student) => sum + student.score, 0);
+let total = 0;
+students.forEach(student => {
+  total += student.score;
+});
 const average = total / students.length;
-console.log(`Class average: ${average.toFixed(1)}`);
+console.log(`Class average: ${average}`);
+

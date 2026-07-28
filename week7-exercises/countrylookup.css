@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+input {
+  width: 70%;
+  margin-right: 8px;
+}
+
+button {
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  min-height: 90px;
+}
