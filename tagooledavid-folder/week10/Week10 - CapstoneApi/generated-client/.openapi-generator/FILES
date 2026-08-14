@@ -1,0 +1,14 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+api.ts
+base.ts
+common.ts
+configuration.ts
+docs/DefaultApi.md
+docs/NewStudent.md
+docs/Student.md
+docs/StudentApiResponse.md
+docs/StudentListApiResponse.md
+git_push.sh
+index.ts
