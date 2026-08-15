@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 9 - TypeScript</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <section class="page-section">
+      <div class="section-box">
+        <h1>Country Lookup</h1>
+        <p class="section-label">Week 9 — TypeScript Exercise</p>
+
+        <div class="search-bar">
+          <input id="countryInput" type="text" placeholder="Type a country name..." />
+          <button id="searchBtn">Search</button>
+        </div>
+
+        <p id="countryStatus" class="msg-text"></p>
+
+        <div id="countryResult" class="result-box hide">
+          <span id="countryFlag" class="flag-text"></span>
+          <h2 id="countryName"></h2>
+          <div class="info-line">
+            <span class="info-label">Capital</span>
+            <span id="countryCapital" class="info-value"></span>
+          </div>
+          <div class="info-line">
+            <span class="info-label">Region</span>
+            <span id="countryRegion" class="info-value"></span>
+          </div>
+          <div class="info-line">
+            <span class="info-label">Population</span>
+            <span id="countryPop" class="info-value"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section grey-bg">
+      <div class="section-box">
+        <h1>CiT Directory</h1>
+        <p class="section-label">Week 9 — TypeScript Exercise</p>
+
+        <p id="directoryStatus" class="msg-text"></p>
+
+        <div id="userCards" class="cards-row"></div>
+      </div>
+    </section>
+
+    <!-- points to the compiled JS file in dist folder -->
+    <script src="dist/app.js" defer></script>
+  </body>
+</html>
