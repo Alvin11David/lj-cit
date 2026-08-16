@@ -22,7 +22,7 @@ components:
       required: [name, regNumber, gpa]
       properties:
         name: { type: string }
-        regNumber: { type: string }
+        reg_number: { type: string }
         gpa: { type: number, minimum: 0, maximum: 5 }
 
 
@@ -51,6 +51,7 @@ components:
 paths:
   /api/v1/students:
     post:
+      operationId: createStudent
       summary: Creates a student
       requestBody:
         required: true
@@ -83,6 +84,7 @@ paths:
 
 
     get:
+      operationId: getAllStudents
       summary: Gets all students
       responses:
         "200":
@@ -94,6 +96,7 @@ paths:
 
   /api/v1/students/{id}:
     get:
+      operationId: getStudentById
       summary: Returns a student
       parameters:
         - name: id
@@ -121,6 +124,7 @@ paths:
 
 
     put:
+      operationId: editStudent
       summary: Edits an Existing Student
       parameters:
         - name: id
@@ -153,6 +157,7 @@ paths:
                 $ref: '#/components/schemas/StudentApiResponse'
 
     delete:
+      operationId: deleteStudent
       summary: Deletes a given student
       parameters:
         - name: id

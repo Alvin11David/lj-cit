@@ -1,11 +1,13 @@
 package org.example.capstoneapi.service;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 interface PaymentService{
     public String initiate();
@@ -31,7 +33,6 @@ class FlutterwavePaymentService implements PaymentService{
 }
 
 @Component("stripe")
-@Primary
 class StripePaymentService implements PaymentService{
 
     @Override
@@ -61,12 +62,41 @@ class MTNPaymentService implements PaymentService{
 
 
 
-// this will use the primary
+interface PaymentServiceFactory{
+    PaymentService getProvider(String provider);
+}
+
+
+
+@Component
+class MainPaymentServiceFactory implements PaymentServiceFactory{
+    private final Map<String, PaymentService> paymentServices;
+    MainPaymentServiceFactory(Map<String, PaymentService> paymentServices){
+        this.paymentServices=paymentServices;
+    }
+    @Override
+    public PaymentService getProvider(String provider) {
+        PaymentService selectedProvider = paymentServices.get(provider);
+        if (selectedProvider == null){
+            throw new SelectedPaymentProviderNotFound("No Payment Provider Registred for "+provider);
+        }
+        return selectedProvider;
+    }
+    }
+
+
+
+
 @Service
 class AmazonOrderCheckoutService{
-    private final PaymentService paymentService;
-    public AmazonOrderCheckoutService(PaymentService paymentService){
-        this.paymentService = paymentService;
+    private final PaymentServiceFactory paymentServiceFactory;
+    public AmazonOrderCheckoutService(PaymentServiceFactory paymentServiceFactory){
+        this.paymentServiceFactory = paymentServiceFactory;
+    }
+
+    public String checkout(String provider){
+        PaymentService paymentService = paymentServiceFactory.getProvider(provider);
+        return  paymentService.initiate() + "........" + paymentService.process();
     }
 
 }
@@ -74,32 +104,35 @@ class AmazonOrderCheckoutService{
 
 @Service
 class JumiaOrderCheckoutService{
-    private final PaymentService paymentService;
-    public JumiaOrderCheckoutService( @Qualifier("mtn") PaymentService paymentService){
-        this.paymentService = paymentService;
+    private final PaymentServiceFactory paymentServiceFactory;
+    public JumiaOrderCheckoutService( PaymentServiceFactory paymentServiceFactory){
+        this.paymentServiceFactory = paymentServiceFactory;
+    }
+
+    public String checkout() {
+        PaymentService paymentService = paymentServiceFactory.getProvider("mtn");
+        return paymentService.initiate() + " ... " + paymentService.process();
     }
 }
 
 
-// this gives room for polymorhism since various classes implement the interface so if we inject the interfcae, we get access to the classes
-// hence giving room for dynamic selection at runtime
-@Service
-class DynamicOrderCheckoutService{
-    private final List<PaymentService> paymentServices;
-    public DynamicOrderCheckoutService(List<PaymentService> paymentServices){
-        this.paymentServices = paymentServices;
+class SelectedPaymentProviderNotFound extends RuntimeException{
+    public SelectedPaymentProviderNotFound(String message){
+        super(message);
     }
-
-    // then here si where the code for selecting which service is going
 }
 
 
 
-// this is explicitly saying me i only deal with flutterwave
+
 @Service
 class ExplicitCheckoutService{
-    private final FlutterwavePaymentService flutterwavePaymentService;
-    public ExplicitCheckoutService(FlutterwavePaymentService flutterwavePaymentService){
-        this.flutterwavePaymentService = flutterwavePaymentService;
+    private final PaymentServiceFactory paymentServiceFactory;
+    public ExplicitCheckoutService(PaymentServiceFactory paymentServiceFactory){
+        this.paymentServiceFactory = paymentServiceFactory;
+    }
+    public String checkout() {
+        PaymentService paymentService = paymentServiceFactory.getProvider("flutterwave");
+        return paymentService.initiate() + " ... " + paymentService.process();
     }
 }
