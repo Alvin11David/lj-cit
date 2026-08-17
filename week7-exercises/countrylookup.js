@@ -1,45 +1,54 @@
-const countryInput = document.querySelector("#countryInput");
-const lookupBtn = document.querySelector("#lookupBtn");
-const result = document.querySelector("#result");
+const countryInput  = document.querySelector("#countryInput");
+const searchBtn     = document.querySelector("#searchBtn");
+const countryStatus = document.querySelector("#countryStatus");
+const countryResult = document.querySelector("#countryResult");
 
-lookupBtn.addEventListener("click", async () => {
-  const countryName = countryInput.value;
+async function searchCountry() {
+  const typed = countryInput.value.trim();
 
-  if (countryName === "") {
-    result.textContent = "Please enter a country name first.";
+  if (typed === "") {
+    alert("Please type a country name first");
     return;
   }
 
-  // Show a loading message while fetching data
-  result.textContent = "Loading...";
+  countryStatus.textContent = "Loading...";
+  countryStatus.classList.remove("error");
+  countryResult.classList.add("hide");
 
   try {
-    const response = await fetch(
-      `https://restcountries.com/v3.1/name/${countryName}`,
-    );
+    const response = await fetch("https://countries.dev/name/" + typed);
 
-    // Check if the request worked
     if (!response.ok) {
       throw new Error("Country not found");
     }
 
-    // Convert the response to JSON
     const data = await response.json();
+
+    if (!data || data.length === 0) {
+      throw new Error("Country not found");
+    }
+
     const country = data[0];
 
-    // Pull out the details we want to display
-    const capital = country.capital[0];
-    const region = country.region;
-    const population = country.population;
+    countryStatus.textContent = "";
 
-    // Display the country information on the page
-    result.innerHTML = `
-      <h3>${country.name.common}</h3>
-      <p>Capital: ${capital}</p>
-      <p>Region: ${region}</p>
-      <p>Population: ${population}</p>
-    `;
+    document.querySelector("#countryCapital").textContent = country.capital || "N/A";
+    document.querySelector("#countryRegion").textContent  = country.region || "N/A";
+    document.querySelector("#countryPop").textContent     = country.population ? country.population.toLocaleString() : "N/A";
+
+    countryResult.classList.remove("hide");
+
   } catch (error) {
-    result.textContent = "Could not find country. Please check spelling.";
+    countryStatus.textContent = "Could not find that country. Check your spelling and try again.";
+    countryStatus.classList.add("error");
+    countryResult.classList.add("hide");
+  }
+}
+
+searchBtn.addEventListener("click", searchCountry);
+
+countryInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    searchCountry();
   }
 });
