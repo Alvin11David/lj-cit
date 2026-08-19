@@ -1,0 +1,23 @@
+spring:
+
+  application:
+    name: CapstoneApi
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/capstoneapidb
+    username: postgres
+    password: mugwadavid
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+
+capstone-api:
+  greeting: hello-from-CIT-Capstone-Api_project
+  pagesize: 500
