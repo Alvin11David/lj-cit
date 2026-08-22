@@ -3,6 +3,10 @@ package org.example.capstoneapi.service;
 import org.example.capstoneapi.exception.StudentNotfoundException;
 import org.example.capstoneapi.model.Student;
 import org.example.capstoneapi.repository.StudentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +21,12 @@ public class StudentService {
         this.gradeCalculator = gradeCalculator;
 
     }
+
+    public Page<Student> findPage(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by("gpa").descending());
+        return studentRepository.findAll(pageable);
+    }
+
 
     public Student save(Student student){
         return studentRepository.save(student);

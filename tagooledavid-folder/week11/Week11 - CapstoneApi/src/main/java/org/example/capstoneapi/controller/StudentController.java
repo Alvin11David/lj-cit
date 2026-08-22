@@ -43,14 +43,13 @@ public class StudentController {
         return ResponseEntity.ok(body);
     }
 
+
     @GetMapping
-    public ResponseEntity<ApiResponse<List<StudentResponse>>> getAll(){
-        List<StudentResponse> allStudents = studentFacade.getAll();
-        ApiResponse<List<StudentResponse>> body = new ApiResponse<>(
-                "SUCCESS",
-                "Students fetched Successfully",
-                allStudents
-        );
+    public ResponseEntity<ApiResponse<List<StudentResponse>>> getAll(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "20") int size) {
+
+        ApiResponse<List<StudentResponse>> body = studentFacade.findPage(page, size);
         return ResponseEntity.ok(body);
     }
 
