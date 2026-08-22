@@ -1,8 +1,3 @@
-// =============================================
-// Week 9 Exercise — TypeScript Version of Week 7
-// CiT Directory + Country Lookup with types
-// =============================================
-
 
 // -----------------------------------------------
 // INTERFACES — describe the shape of our API data

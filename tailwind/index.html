@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 10 - Tailwind CSS</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- custom brand colour via Tailwind theme -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cit: {
+                navy: "#1a1a2e",
+                blue: "#2E86C1",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 font-sans">
+
+    <header class="bg-cit-navy text-white px-6 py-5">
+      <h1 class="text-2xl font-extrabold">Week 10 — Tailwind CSS</h1>
+      <p class="text-sm text-gray-400 mt-1">Phase 2 Exercise — Utility First Styling</p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-10 flex flex-col gap-12">
+
+      <section class="bg-white rounded-xl shadow p-8">
+        <h2 class="text-xl font-bold text-cit-navy mb-1">Country Lookup</h2>
+        <p class="text-sm text-gray-400 mb-6">Week 7 Exercise — now styled with Tailwind</p>
+
+        <!-- search bar -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-4 max-w-lg">
+          <input
+            id="countryInput"
+            type="text"
+            placeholder="Type a country name..."
+            class="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm outline-none focus:border-cit-navy transition"
+          />
+          <button
+            id="searchBtn"
+            class="bg-cit-navy hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg text-sm transition active:scale-95"
+          >
+            Search
+          </button>
+        </div>
+
+        <!-- status message -->
+        <p id="countryStatus" class="text-sm text-gray-400 mb-4 min-h-5"></p>
+
+        <!-- result card -->
+        <div id="countryResult" class="hidden border border-gray-200 rounded-xl p-6 max-w-sm">
+          <span id="countryFlag" class="text-5xl block mb-3"></span>
+          <h3 id="countryName" class="text-lg font-bold text-cit-navy mb-4"></h3>
+
+          <div class="flex justify-between py-3 border-b border-gray-100 text-sm">
+            <span class="text-gray-400">Capital</span>
+            <span id="countryCapital" class="font-semibold"></span>
+          </div>
+          <div class="flex justify-between py-3 border-b border-gray-100 text-sm">
+            <span class="text-gray-400">Region</span>
+            <span id="countryRegion" class="font-semibold"></span>
+          </div>
+          <div class="flex justify-between py-3 text-sm">
+            <span class="text-gray-400">Population</span>
+            <span id="countryPop" class="font-semibold"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= CiT Directory Section ======= -->
+      <section>
+        <h2 class="text-xl font-bold text-cit-navy mb-1">CiT Directory</h2>
+        <p class="text-sm text-gray-400 mb-6">Week 7 Homework — now styled with Tailwind</p>
+
+        <!-- status message -->
+        <p id="directoryStatus" class="text-sm text-gray-400 mb-4 min-h-5"></p>
+
+        <!-- responsive card grid -->
+        <div
+          id="userCards"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+      </section>
+
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
