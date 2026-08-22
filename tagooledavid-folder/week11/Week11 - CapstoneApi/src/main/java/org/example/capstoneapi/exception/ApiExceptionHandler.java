@@ -31,7 +31,19 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(StudentNotfoundException.class)
-    public ResponseEntity<ApiResponse<Object>> handleNotFound(StudentNotfoundException ex) {
+    public ResponseEntity<ApiResponse<Object>> handleStudentNotFound(StudentNotfoundException ex) {
+        ApiResponse<Object> body = new ApiResponse<>("NOT_FOUND", ex.getMessage(), null);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    @ExceptionHandler(CourseNotfoundException.class)
+    public ResponseEntity<ApiResponse<Object>> handleCourseNotFound(CourseNotfoundException ex) {
+        ApiResponse<Object> body = new ApiResponse<>("NOT_FOUND", ex.getMessage(), null);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    @ExceptionHandler(EnrollmentNotfoundException.class)
+    public ResponseEntity<ApiResponse<Object>> handleEnrollmentNotFound(EnrollmentNotfoundException ex) {
         ApiResponse<Object> body = new ApiResponse<>("NOT_FOUND", ex.getMessage(), null);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
