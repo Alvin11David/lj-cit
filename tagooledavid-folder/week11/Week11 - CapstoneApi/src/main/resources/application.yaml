@@ -21,3 +21,6 @@ spring:
 capstone-api:
   greeting: hello-from-CIT-Capstone-Api_project
   pagesize: 500
+
+
+spring.jpa.open-in-view: false
