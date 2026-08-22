@@ -1,0 +1,74 @@
+openapi: "3.0.3"
+info:
+  title: Student Grade Management System API
+  description: API for managing student grades and records
+  version: "1.0.0"
+  contact:
+    name: Backend Team
+
+servers:
+  - url: http://localhost:8080
+    description: Development server
+  - url: https://backend-api-production-b1c1.up.railway.app
+    description: Production server (Railway)
+
+paths:
+  /students:
+    get:
+      summary: Get all students
+      description: Retrieves a list of all registered students with their grades
+      operationId: getAllStudents
+      tags:
+        - Students
+      responses:
+        "200":
+          description: A list of students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Student"
+
+    post:
+      summary: Add a new student
+      description: Creates a new student record
+      operationId: addStudent
+      tags:
+        - Students
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Student"
+      responses:
+        "200":
+          description: The created student
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Student"
+
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        regNumber:
+          type: string
+          description: Student registration number (primary key)
+          example: "2023/001"
+        name:
+          type: string
+          description: Full name of the student
+          example: "John Doe"
+        course:
+          type: string
+          description: Course enrolled in
+          example: "Computer Science"
+        marks:
+          type: number
+          format: double
+          description: Student's grade marks
+          example: 85.5

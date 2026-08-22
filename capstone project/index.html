@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CiT Student Grade Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>CiT Student Grade Portal</h1>
+    </header>
+
+    <div class="container">
+      <!-- Add Student Form -->
+      <div class="form-section">
+        <h2>Add New Student</h2>
+        <form id="addForm">
+          <input id="name" type="text" placeholder="Full Name" required />
+          <input id="course" type="text" placeholder="Course" required />
+          <input
+            id="marks"
+            type="number"
+            step="0.1"
+            placeholder="Marks e.g. 85.5"
+            required
+          />
+          <button type="submit">Add Student</button>
+        </form>
+      </div>
+
+      <!-- Student List -->
+      <div class="list-section">
+        <h2>All Students</h2>
+        <p id="status"></p>
+        <ul id="studentList"></ul>
+      </div>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
