@@ -114,3 +114,13 @@ form button:hover {
     font-size: 20px;
   }
 }
+
+.edit{
+  padding: 10px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1px;
+  cursor: pointer
+}
