@@ -29,6 +29,13 @@ public class Student {
     @Column(nullable = false)
     private double gpa;
 
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @OneToMany(mappedBy = "student")
     List<Enrollment> enrollmentList = new ArrayList<>();
 }
