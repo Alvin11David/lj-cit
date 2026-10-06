@@ -14,6 +14,9 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
 
     Optional<Student> findByRegNumber(String regNumber);
 
+
+    Optional<Student> findByName(String name);
+
     boolean existsByRegNumber(String regNumber);
 
 
