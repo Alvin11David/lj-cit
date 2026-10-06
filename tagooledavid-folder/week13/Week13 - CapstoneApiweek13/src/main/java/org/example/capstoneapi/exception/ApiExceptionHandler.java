@@ -52,6 +52,17 @@ public class ApiExceptionHandler {
         return ResponseEntity.badRequest().body(body);
     }
 
+    @ExceptionHandler(UserNameNotFoundException.class)
+    public ResponseEntity<ApiResponse<Object>> handleUserNameNotFound(UserNameNotFoundException exception){
+        ApiResponse<Object> body = new ApiResponse<>(
+                "NOT_FOUND",
+                exception.getMessage(),
+                null
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Object>> handleUnexpected(Exception ex) {
         ApiResponse<Object> body = new ApiResponse<>("INTERNAL_SERVER_ERROR", "Something went wrong", null);
