@@ -43,7 +43,7 @@ public class StudentService {
     public void delete(Long id){
         if(!studentRepository.existsById(id)){
             throw new StudentNotfoundException(
-                    "Student not found with id: " + id);
+                    "Course not found with id: " + id);
         }
         studentRepository.deleteById(id);
     }

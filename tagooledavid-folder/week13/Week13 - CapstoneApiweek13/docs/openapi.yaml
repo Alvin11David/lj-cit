@@ -1,0 +1,171 @@
+openapi: 3.1.0
+info:
+  title: CIT Student Management Api
+  version: 1.0.0
+  description: Manage Students and Their Grades
+servers:
+  - url: http://localhost:8080
+    description: Local Development
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        regNumber: { type: string }
+        gpa: { type: number }
+
+
+    NewStudent:
+      type: object
+      required: [name, regNumber, gpa]
+      properties:
+        name: { type: string }
+        reg_number: { type: string }
+        gpa: { type: number, minimum: 0, maximum: 5 }
+
+
+
+    StudentApiResponse:
+      type: object
+      properties:
+        status: { type: string }
+        message: { type: string }
+        data:
+          $ref: '#/components/schemas/Student'
+
+
+    StudentListApiResponse:
+      type: object
+      properties:
+        status: { type: string }
+        message: { type: string }
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Student'
+
+
+
+paths:
+  /api/v1/students:
+    post:
+      operationId: createStudent
+      summary: Creates a student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStudent'
+
+      responses:
+        "201":
+          description: Student Successfully Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentApiResponse'
+
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentApiResponse'
+
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentApiResponse'
+
+
+    get:
+      operationId: getAllStudents
+      summary: Gets all students
+      responses:
+        "200":
+          description: Students fetched Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentListApiResponse'
+
+  /api/v1/students/{id}:
+    get:
+      operationId: getStudentById
+      summary: Returns a student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: Student Fetched Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentApiResponse'
+
+
+        "404":
+          description: Student Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentApiResponse'
+
+
+
+    put:
+      operationId: editStudent
+      summary: Edits an Existing Student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStudent'
+
+
+      responses:
+        "200":
+          description: Student field(s) edited successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentApiResponse'
+
+        "404":
+          description: Student Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentApiResponse'
+
+    delete:
+      operationId: deleteStudent
+      summary: Deletes a given student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "204":
+          description: Student deleted Successfully
