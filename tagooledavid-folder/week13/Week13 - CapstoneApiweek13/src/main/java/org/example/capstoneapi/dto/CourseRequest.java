@@ -11,9 +11,6 @@ public record CourseRequest(
         @NotBlank(message = "Code cannot be blank")
         String code,
 
-        @Pattern(regexp = "^[A-Z0-Z9#_€]", message = "Password may contain only characters, numbers, underscore and other symbols")
-        String password,
-
         @NotBlank(message = "Email is required")
         @Email(message = "The Email must be valid!")
         String email

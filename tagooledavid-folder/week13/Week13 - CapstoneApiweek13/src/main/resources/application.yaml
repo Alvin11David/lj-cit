@@ -24,3 +24,7 @@ capstone-api:
   greeting: hello-from-CIT-Capstone-Api_project
   pagesize: 500
 
+jwt:
+  secret: change-me-this-secret-must-be-at-least-32-bytes-long
+  expiration-ms: 86400000
+
