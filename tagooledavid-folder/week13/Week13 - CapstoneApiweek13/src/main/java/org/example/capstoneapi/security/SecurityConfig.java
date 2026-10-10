@@ -58,9 +58,9 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/v1/students").hasRole("LIBRARIAN")
-                        .requestMatchers(HttpMethod.DELETE,"/api/v1/students").hasRole("LIBRARIAN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/v1/students/**").hasRole("LIBRARIAN")
                         .requestMatchers(HttpMethod.POST,"/api/v1/courses").hasRole("LIBRARIAN")
-                        .requestMatchers(HttpMethod.POST,"/api/v1/courses").hasRole("LIBRARIAN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/v1/courses/**").hasRole("LIBRARIAN")
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
