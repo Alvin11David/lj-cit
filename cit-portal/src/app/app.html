@@ -1,73 +1,59 @@
 <main class="app-shell">
 	<header class="app-header">
-		<h1>{{ title() }}</h1>
-		<p>
-			Use the buttons to grant or revoke access to the About page protected by the auth guard.
-		</p>
+		<div class="brand">
+			<span class="brand-mark">CiT</span>
+			<div class="brand-text">
+				<h1>{{ title() }}</h1>
+				<p class="tagline">Student Grade Portal · Angular 21 · Weeks 13 &amp; 14</p>
+			</div>
+		</div>
 
-		<div class="nav-bar">
-			<a
-				routerLink="/students"
-				routerLinkActive="active"
-				class="nav-link"
-			>
+		<nav class="nav-bar">
+			<a routerLink="/students" routerLinkActive="active" class="nav-link">
 				Students
 			</a>
-			<a
-				routerLink="/about"
-				routerLinkActive="active"
-				class="nav-link"
-			>
+			<a routerLink="/about" routerLinkActive="active" class="nav-link">
 				About
 			</a>
-			<a
-				routerLink="/unknown-route"
-				class="nav-link"
-			>
+			<a routerLink="/unknown-route" class="nav-link nav-link-muted">
 				Trigger 404
 			</a>
-		</div>
+		</nav>
 
-		<div class="access-actions">
-			<button
-				type="button"
-				class="action-button"
-				(click)="grantAboutAccess()"
-			>
-				Grant About Access
-			</button>
-			<button
-				type="button"
-				class="action-button"
-				(click)="revokeAboutAccess()"
-			>
-				Revoke About Access
-			</button>
-			<span class="status-text">
-				About access: {{ hasAboutAccess() ? 'enabled' : 'blocked' }}
-			</span>
-		</div>
+		<div class="control-panel">
+			<div class="control-group">
+				<span class="control-title">Route guard</span>
+				<div class="control-actions">
+					<button type="button" class="action-button" (click)="grantAboutAccess()">
+						Grant
+					</button>
+					<button type="button" class="action-button ghost" (click)="revokeAboutAccess()">
+						Revoke
+					</button>
+					<span class="chip" [class.on]="hasAboutAccess()">
+						{{ hasAboutAccess() ? 'enabled' : 'blocked' }}
+					</span>
+				</div>
+			</div>
 
-		<div class="access-actions">
-			<button
-				type="button"
-				class="action-button"
-				(click)="grantToken()"
-			>
-				Set JWT
-			</button>
-			<button
-				type="button"
-				class="action-button"
-				(click)="revokeToken()"
-			>
-				Clear JWT
-			</button>
-			<span class="status-text">
-				JWT: {{ hasToken() ? 'attached by interceptor' : 'none' }}
-			</span>
+			<div class="control-group">
+				<span class="control-title">JWT interceptor</span>
+				<div class="control-actions">
+					<button type="button" class="action-button" (click)="grantToken()">
+						Set JWT
+					</button>
+					<button type="button" class="action-button ghost" (click)="revokeToken()">
+						Clear
+					</button>
+					<span class="chip" [class.on]="hasToken()">
+						{{ hasToken() ? 'attached' : 'none' }}
+					</span>
+				</div>
+			</div>
 		</div>
 	</header>
 
-	<router-outlet></router-outlet>
+	<section class="view">
+		<router-outlet></router-outlet>
+	</section>
 </main>

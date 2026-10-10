@@ -1,22 +1,59 @@
 <div class="student-list-page">
-  <h2>All Students</h2>
+  <header class="page-head">
+    <h2>All Students</h2>
+    <p>Live data from the students API, with an offline fallback.</p>
+  </header>
 
   <form class="student-form" (ngSubmit)="addStudent()">
-    <input name="name" [(ngModel)]="newStudent.name" placeholder="Full name" required />
-    <input name="regNumber" [(ngModel)]="newStudent.regNumber" placeholder="Reg number" required />
-    <input
-      name="gpa"
-      type="number"
-      step="0.01"
-      min="0"
-      max="4"
-      [(ngModel)]="newStudent.gpa"
-      placeholder="GPA"
-      required
-    />
-    <input name="track" [(ngModel)]="newStudent.track" placeholder="Track" required />
+    <div class="field">
+      <label for="student-name">Full name</label>
+      <input
+        id="student-name"
+        name="name"
+        [(ngModel)]="newStudent.name"
+        placeholder="Jane Doe"
+        required
+      />
+    </div>
 
-    <button type="submit" class="action-button" [disabled]="saving">
+    <div class="field">
+      <label for="student-reg">Reg number</label>
+      <input
+        id="student-reg"
+        name="regNumber"
+        [(ngModel)]="newStudent.regNumber"
+        placeholder="2024005"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label for="student-gpa">GPA</label>
+      <input
+        id="student-gpa"
+        name="gpa"
+        type="number"
+        step="0.01"
+        min="0"
+        max="4"
+        [(ngModel)]="newStudent.gpa"
+        placeholder="3.50"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label for="student-track">Track</label>
+      <input
+        id="student-track"
+        name="track"
+        [(ngModel)]="newStudent.track"
+        placeholder="Software Engineering"
+        required
+      />
+    </div>
+
+    <button type="submit" class="primary-btn" [disabled]="saving">
       {{ saving ? 'Saving…' : 'Add Student' }}
     </button>
   </form>
@@ -28,25 +65,30 @@
   <ul class="student-list">
     @for (student of students$ | async; track student.regNumber) {
       <li class="student-item">
-        <div>
-          <p class="student-name">{{ student.name }}</p>
-          <p class="student-meta">{{ student.regNumber }} — GPA {{ student.gpa }}</p>
+        <div class="student-identity">
+          <span class="avatar">{{ student.name.charAt(0) }}</span>
+          <div class="student-text">
+            <p class="student-name">{{ student.name }}</p>
+            <p class="student-meta">#{{ student.regNumber }} · {{ student.track }}</p>
+          </div>
         </div>
 
+        <span class="gpa-badge">GPA {{ student.gpa }}</span>
+
         <div class="student-actions">
-          <a [routerLink]="['/students', student.regNumber]" class="student-link">
+          <a [routerLink]="['/students', student.regNumber]" class="ghost-btn">
             View →
           </a>
           <button
             type="button"
-            class="student-link"
+            class="ghost-btn"
             (click)="openStudent(student.regNumber)"
           >
             Open
           </button>
           <button
             type="button"
-            class="student-link danger"
+            class="ghost-btn danger"
             (click)="deleteStudent(student.regNumber)"
           >
             Delete

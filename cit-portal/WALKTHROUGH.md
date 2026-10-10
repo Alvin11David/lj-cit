@@ -16,7 +16,7 @@ npx ng test --watch=false   # unit tests (Vitest)
 
 Demo flow:
 1. Open the app. It redirects `/` to `/students`.
-2. Students list loads. If the backend at `localhost:8080` is running, real data is shown. If not, the `catchError` fallback shows local seed data (and logs a warning in the console).
+2. Students list loads from local seed data (because `apiConfig.useLiveApi` is `false` by default). Set it to `true` in `api.config.ts` to hit the real backend at `localhost:8080`.
 3. Add a student via the form → the list refreshes (`POST`).
 4. Click **View →** (routerLink) or **Open** (programmatic `Router.navigate`) → `/students/:id` detail page.
 5. Click **Delete** → `DELETE` + refresh.
@@ -133,14 +133,23 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
 ---
 
-## 5. Robustness note (worth explaining)
+## 5. API switch — live API vs local data
 
-The service uses `catchError` fallbacks so the app still demonstrates HTTP/RxJS behaviour when the Week 13 backend is not running on `localhost:8080`:
+`api.config.ts` holds one flag:
+```ts
+export const apiConfig = {
+  useLiveApi: false,   // flip to true when the backend runs on :8080
+  baseUrl: 'http://localhost:8080/students/api/v1/students',
+};
+```
+
+- `useLiveApi: false` (default) — the service returns local seed data directly. No network request is made, so the browser console stays clean and load is instant.
+- `useLiveApi: true` — every method uses the real `HttpClient`, with `timeout(3000)` and `catchError` falling back to local data if the backend is down.
+
+Using `catchError` fallbacks means the app still demonstrates HTTP/RxJS behaviour gracefully when the backend is unavailable:
 - `GET` falls back to a local seed list.
 - `POST` adds to the local list.
 - `PUT` updates, `DELETE` removes from the local list.
-
-When the backend **is** running, all calls hit the real API. This is a deliberate graceful-degradation pattern (never leave the user on a frozen screen), and it demonstrates `catchError` in a realistic way.
 
 ---
 

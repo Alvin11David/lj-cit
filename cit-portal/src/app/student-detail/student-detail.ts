@@ -9,6 +9,7 @@ import { StudentService } from '../student.service';
   standalone: true,
   imports: [RouterLink, AsyncPipe],
   templateUrl: './student-detail.html',
+  styleUrl: './student-detail.css',
 })
 export class StudentDetailComponent {
   private route = inject(ActivatedRoute);

@@ -1,0 +1,54 @@
+.not-found-page {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.not-found-card {
+  padding: 2.75rem 2rem;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+}
+
+.not-found-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.not-found-card h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.6rem;
+}
+
+.not-found-card p {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.7;
+  margin-bottom: 1.6rem;
+}
+
+.not-found-card .action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.35rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.26);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.not-found-card .action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(79, 70, 229, 0.34);
+}

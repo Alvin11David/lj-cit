@@ -11,6 +11,7 @@ import { StudentService } from '../student.service';
   standalone: true,
   imports: [RouterLink, AsyncPipe, FormsModule],
   templateUrl: './student-list.html',
+  styleUrl: './student-list.css',
 })
 export class StudentListComponent {
   private studentService = inject(StudentService);
