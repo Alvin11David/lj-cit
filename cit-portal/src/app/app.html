@@ -1,1 +1,73 @@
-<app-student-list></app-student-list>
+<main class="app-shell">
+	<header class="app-header">
+		<h1>{{ title() }}</h1>
+		<p>
+			Use the buttons to grant or revoke access to the About page protected by the auth guard.
+		</p>
+
+		<div class="nav-bar">
+			<a
+				routerLink="/students"
+				routerLinkActive="active"
+				class="nav-link"
+			>
+				Students
+			</a>
+			<a
+				routerLink="/about"
+				routerLinkActive="active"
+				class="nav-link"
+			>
+				About
+			</a>
+			<a
+				routerLink="/unknown-route"
+				class="nav-link"
+			>
+				Trigger 404
+			</a>
+		</div>
+
+		<div class="access-actions">
+			<button
+				type="button"
+				class="action-button"
+				(click)="grantAboutAccess()"
+			>
+				Grant About Access
+			</button>
+			<button
+				type="button"
+				class="action-button"
+				(click)="revokeAboutAccess()"
+			>
+				Revoke About Access
+			</button>
+			<span class="status-text">
+				About access: {{ hasAboutAccess() ? 'enabled' : 'blocked' }}
+			</span>
+		</div>
+
+		<div class="access-actions">
+			<button
+				type="button"
+				class="action-button"
+				(click)="grantToken()"
+			>
+				Set JWT
+			</button>
+			<button
+				type="button"
+				class="action-button"
+				(click)="revokeToken()"
+			>
+				Clear JWT
+			</button>
+			<span class="status-text">
+				JWT: {{ hasToken() ? 'attached by interceptor' : 'none' }}
+			</span>
+		</div>
+	</header>
+
+	<router-outlet></router-outlet>
+</main>

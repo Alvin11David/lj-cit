@@ -1,18 +1,60 @@
-<div class="p-6 max-w-md mx-auto">
-  <h1 class="text-2xl font-bold mb-4">Students</h1>
+<div class="student-list-page">
+  <h2>All Students</h2>
 
-  @if (isLoading()) {
-    <p class="text-gray-500">Loading students…</p>
-  } @else {
-    <div class="space-y-2">
-      @for (s of students; track s.regNumber) {
-        <app-student-card
-          [student]="s"
-          (select)="onSelect($event)"
-        ></app-student-card>
-      } @empty {
-        <p>No students yet.</p>
-      }
-    </div>
+  <form class="student-form" (ngSubmit)="addStudent()">
+    <input name="name" [(ngModel)]="newStudent.name" placeholder="Full name" required />
+    <input name="regNumber" [(ngModel)]="newStudent.regNumber" placeholder="Reg number" required />
+    <input
+      name="gpa"
+      type="number"
+      step="0.01"
+      min="0"
+      max="4"
+      [(ngModel)]="newStudent.gpa"
+      placeholder="GPA"
+      required
+    />
+    <input name="track" [(ngModel)]="newStudent.track" placeholder="Track" required />
+
+    <button type="submit" class="action-button" [disabled]="saving">
+      {{ saving ? 'Saving…' : 'Add Student' }}
+    </button>
+  </form>
+
+  @if (saveError) {
+    <p class="form-error">{{ saveError }}</p>
   }
+
+  <ul class="student-list">
+    @for (student of students$ | async; track student.regNumber) {
+      <li class="student-item">
+        <div>
+          <p class="student-name">{{ student.name }}</p>
+          <p class="student-meta">{{ student.regNumber }} — GPA {{ student.gpa }}</p>
+        </div>
+
+        <div class="student-actions">
+          <a [routerLink]="['/students', student.regNumber]" class="student-link">
+            View →
+          </a>
+          <button
+            type="button"
+            class="student-link"
+            (click)="openStudent(student.regNumber)"
+          >
+            Open
+          </button>
+          <button
+            type="button"
+            class="student-link danger"
+            (click)="deleteStudent(student.regNumber)"
+          >
+            Delete
+          </button>
+        </div>
+      </li>
+    } @empty {
+      <li class="empty-state">No students found.</li>
+    }
+  </ul>
 </div>

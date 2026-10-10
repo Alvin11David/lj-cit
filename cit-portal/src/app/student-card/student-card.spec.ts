@@ -13,6 +13,7 @@ describe('StudentCard', () => {
 
     fixture = TestBed.createComponent(StudentCard);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('student', { name: 'Alice Nakato', regNumber: '2024001', gpa: 3.75 });
     await fixture.whenStable();
   });
 

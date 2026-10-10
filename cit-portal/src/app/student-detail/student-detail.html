@@ -1,0 +1,38 @@
+<div class="student-detail-page">
+  @if (student$ | async; as student) {
+    <div class="student-detail-card">
+      <div class="student-avatar">
+        {{ student.name[0] }}
+      </div>
+
+      <h2>{{ student.name }}</h2>
+      <p class="student-subtitle">{{ student.regNumber }}</p>
+
+      <div class="detail-list">
+        <div class="detail-row">
+          <span class="detail-label">GPA</span>
+          <span class="detail-value">{{ student.gpa }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Track</span>
+          <span class="detail-value">{{ student.track }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Status</span>
+          <span class="detail-value">{{ student.isActive ? 'Active' : 'Inactive' }}</span>
+        </div>
+      </div>
+
+      <a routerLink="/students" class="back-link">
+        ← Back to Students
+      </a>
+    </div>
+  } @else {
+    <div class="student-detail-card not-found-card">
+      <p>Student not found.</p>
+      <a routerLink="/students" class="back-link">
+        ← Back to Students
+      </a>
+    </div>
+  }
+</div>

@@ -1,17 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
 
-import { StudentList } from './student-list';
+import { StudentService } from '../student.service';
+import { StudentListComponent } from './student-list';
 
-describe('StudentList', () => {
-  let component: StudentList;
-  let fixture: ComponentFixture<StudentList>;
+describe('StudentListComponent', () => {
+  let component: StudentListComponent;
+  let fixture: ComponentFixture<StudentListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StudentList],
+      imports: [StudentListComponent],
+      providers: [
+        provideRouter([]),
+        {
+          provide: StudentService,
+          useValue: {
+            getStudents: () => of([]),
+            addStudent: () => of([]),
+            deleteStudent: () => of(undefined),
+          },
+        },
+      ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(StudentList);
+    fixture = TestBed.createComponent(StudentListComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,27 +1,56 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+
 import { Student } from '../student';
-import { StudentCard } from '../student-card/student-card';
+import { StudentService } from '../student.service';
 
 @Component({
   selector: 'app-student-list',
-  imports: [StudentCard],
+  standalone: true,
+  imports: [RouterLink, AsyncPipe, FormsModule],
   templateUrl: './student-list.html',
-  styleUrl: './student-list.css',
 })
-export class StudentList implements OnInit {
-  isLoading = signal(true);
-  students: any[] = [];
+export class StudentListComponent {
+  private studentService = inject(StudentService);
+  private router = inject(Router);
 
-  constructor(private studentService: Student) {}
+  students$ = this.studentService.getStudents();
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.students = this.studentService.getStudents();
-      this.isLoading.set(false);
-    }, 1500);
+  saving = false;
+  saveError = '';
+
+  newStudent: Student = this.emptyStudent();
+
+  addStudent() {
+    this.saving = true;
+    this.saveError = '';
+
+    this.studentService.addStudent({ ...this.newStudent }).subscribe({
+      next: () => {
+        this.saving = false;
+        this.newStudent = this.emptyStudent();
+        this.students$ = this.studentService.getStudents();
+      },
+      error: () => {
+        this.saving = false;
+        this.saveError = 'Could not save the student. Please try again.';
+      },
+    });
   }
 
-  onSelect(student: { name: string }) {
-    console.log('you clicked on', student.name);
+  deleteStudent(regNumber: string) {
+    this.studentService.deleteStudent(regNumber).subscribe({
+      next: () => (this.students$ = this.studentService.getStudents()),
+    });
+  }
+
+  openStudent(regNumber: string) {
+    this.router.navigate(['/students', regNumber]);
+  }
+
+  private emptyStudent(): Student {
+    return { name: '', regNumber: '', gpa: 0, track: '', isActive: true };
   }
 }
