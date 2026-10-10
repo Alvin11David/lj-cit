@@ -4,13 +4,20 @@
     <p>Live data from the students API, with an offline fallback.</p>
   </header>
 
-  <form class="student-form" (ngSubmit)="addStudent()">
+  <form class="student-form" (ngSubmit)="submit()">
+    <div class="form-head">
+      <span class="form-title">{{ isEditing ? 'Edit student' : 'Add a student' }}</span>
+      @if (isEditing) {
+        <button type="button" class="link-btn" (click)="cancelEdit()">Cancel edit</button>
+      }
+    </div>
+
     <div class="field">
       <label for="student-name">Full name</label>
       <input
         id="student-name"
         name="name"
-        [(ngModel)]="newStudent.name"
+        [(ngModel)]="formStudent.name"
         placeholder="Jane Doe"
         required
       />
@@ -21,8 +28,9 @@
       <input
         id="student-reg"
         name="regNumber"
-        [(ngModel)]="newStudent.regNumber"
+        [(ngModel)]="formStudent.regNumber"
         placeholder="2024005"
+        [readonly]="isEditing"
         required
       />
     </div>
@@ -36,7 +44,7 @@
         step="0.01"
         min="0"
         max="4"
-        [(ngModel)]="newStudent.gpa"
+        [(ngModel)]="formStudent.gpa"
         placeholder="3.50"
         required
       />
@@ -47,15 +55,20 @@
       <input
         id="student-track"
         name="track"
-        [(ngModel)]="newStudent.track"
+        [(ngModel)]="formStudent.track"
         placeholder="Software Engineering"
         required
       />
     </div>
 
-    <button type="submit" class="primary-btn" [disabled]="saving">
-      {{ saving ? 'Saving…' : 'Add Student' }}
-    </button>
+    <div class="form-actions">
+      <button type="submit" class="primary-btn" [disabled]="saving">
+        {{ saving ? 'Saving…' : isEditing ? 'Update Student' : 'Add Student' }}
+      </button>
+      @if (isEditing) {
+        <button type="button" class="ghost-btn" (click)="cancelEdit()">Cancel</button>
+      }
+    </div>
   </form>
 
   @if (saveError) {
@@ -64,14 +77,19 @@
 
   <ul class="student-list">
     @for (student of students$ | async; track student.regNumber) {
-      <li class="student-item">
-        <div class="student-identity">
+      <li class="student-item" [class.editing]="editingRegNumber === student.regNumber">
+        <button
+          type="button"
+          class="student-identity"
+          title="Open detail page"
+          (click)="openStudent(student.regNumber)"
+        >
           <span class="avatar">{{ student.name.charAt(0) }}</span>
-          <div class="student-text">
-            <p class="student-name">{{ student.name }}</p>
-            <p class="student-meta">#{{ student.regNumber }} · {{ student.track }}</p>
-          </div>
-        </div>
+          <span class="student-text">
+            <span class="student-name">{{ student.name }}</span>
+            <span class="student-meta">#{{ student.regNumber }} · {{ student.track }}</span>
+          </span>
+        </button>
 
         <span class="gpa-badge">GPA {{ student.gpa }}</span>
 
@@ -79,13 +97,7 @@
           <a [routerLink]="['/students', student.regNumber]" class="ghost-btn">
             View →
           </a>
-          <button
-            type="button"
-            class="ghost-btn"
-            (click)="openStudent(student.regNumber)"
-          >
-            Open
-          </button>
+          <button type="button" class="ghost-btn" (click)="startEdit(student)">Edit</button>
           <button
             type="button"
             class="ghost-btn danger"

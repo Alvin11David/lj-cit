@@ -22,16 +22,25 @@ export class StudentListComponent {
   saving = false;
   saveError = '';
 
-  newStudent: Student = this.emptyStudent();
+  formStudent: Student = this.emptyStudent();
+  editingRegNumber: string | null = null;
 
-  addStudent() {
+  get isEditing(): boolean {
+    return this.editingRegNumber !== null;
+  }
+
+  submit() {
     this.saving = true;
     this.saveError = '';
 
-    this.studentService.addStudent({ ...this.newStudent }).subscribe({
+    const request$ = this.editingRegNumber
+      ? this.studentService.updateStudent(this.editingRegNumber, { ...this.formStudent })
+      : this.studentService.addStudent({ ...this.formStudent });
+
+    request$.subscribe({
       next: () => {
         this.saving = false;
-        this.newStudent = this.emptyStudent();
+        this.resetForm();
         this.students$ = this.studentService.getStudents();
       },
       error: () => {
@@ -41,14 +50,35 @@ export class StudentListComponent {
     });
   }
 
+  startEdit(student: Student) {
+    this.editingRegNumber = student.regNumber;
+    this.formStudent = { ...student };
+    this.saveError = '';
+  }
+
+  cancelEdit() {
+    this.resetForm();
+  }
+
   deleteStudent(regNumber: string) {
     this.studentService.deleteStudent(regNumber).subscribe({
-      next: () => (this.students$ = this.studentService.getStudents()),
+      next: () => {
+        if (this.editingRegNumber === regNumber) {
+          this.resetForm();
+        }
+        this.students$ = this.studentService.getStudents();
+      },
     });
   }
 
   openStudent(regNumber: string) {
     this.router.navigate(['/students', regNumber]);
+  }
+
+  private resetForm() {
+    this.editingRegNumber = null;
+    this.formStudent = this.emptyStudent();
+    this.saveError = '';
   }
 
   private emptyStudent(): Student {

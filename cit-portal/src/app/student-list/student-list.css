@@ -32,6 +32,41 @@
   box-shadow: var(--shadow-sm);
 }
 
+.form-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.link-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--primary-600);
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -67,9 +102,13 @@
   box-shadow: var(--ring);
 }
 
+.field input[readonly] {
+  background: #eef2f7;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
 .primary-btn {
-  grid-column: 1 / -1;
-  justify-self: start;
   padding: 0.72rem 1.5rem;
   border: none;
   border-radius: var(--radius-sm);
@@ -134,11 +173,27 @@
   box-shadow: var(--shadow);
 }
 
+.student-item.editing {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
 .student-identity {
   display: flex;
   align-items: center;
   gap: 0.85rem;
   min-width: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.student-identity:hover .student-name {
+  color: var(--primary-600);
 }
 
 .avatar {
@@ -157,19 +212,24 @@
 }
 
 .student-text {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
 .student-name {
+  display: block;
   font-size: 1.02rem;
   font-weight: 800;
   color: var(--text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.16s ease;
 }
 
 .student-meta {
+  display: block;
   margin-top: 0.15rem;
   font-size: 0.8rem;
   color: var(--muted);
