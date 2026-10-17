@@ -7,7 +7,7 @@ spring:
     property-naming-strategy: SNAKE_CASE
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/capstoneapidb
+    url: jdbc:postgresql://localhost:5432/week13capstoneapidb
     username: postgres
     password: mugwadavid
 

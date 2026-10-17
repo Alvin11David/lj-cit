@@ -37,7 +37,7 @@ public class SecurityConfig {
 
     @Bean
     AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(customUserDetailsService);
         ////provider.setUserDetailsService(customUserDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
@@ -57,7 +57,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/v1/students").hasRole("LIBRARIAN")
+                        .requestMatchers(HttpMethod.POST,"/api/v1/students").permitAll()
+                        //.requestMatchers(HttpMethod.POST,"/api/v1/students").hasRole("LIBRARIAN")
                         .requestMatchers(HttpMethod.DELETE,"/api/v1/students/**").hasRole("LIBRARIAN")
                         .requestMatchers(HttpMethod.POST,"/api/v1/courses").hasRole("LIBRARIAN")
                         .requestMatchers(HttpMethod.DELETE,"/api/v1/courses/**").hasRole("LIBRARIAN")
