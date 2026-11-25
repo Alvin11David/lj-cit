@@ -12,6 +12,7 @@ import org.nexus.librarymanagementsystem.member.dto.MemberResponse;
 import org.nexus.librarymanagementsystem.member.facade.MemberFacade;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +35,7 @@ public class AuthFacade {
     this.customUserDetailsService = customUserDetailsService;
   }
 
-  @Transactional
+
   public MemberResponse createMember(RegisterRequest registerRequest) {
     MemberRequest memberRequest =
         new MemberRequest(
@@ -47,10 +48,10 @@ public class AuthFacade {
   }
 
   public TokenResponse loginMember(LoginRequest loginRequest) {
-    authenticationManager.authenticate(
+    Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
     CustomUserDetails customUserDetails =
-        (CustomUserDetails) customUserDetailsService.loadUserByUsername(loginRequest.email());
+        (CustomUserDetails) authentication.getPrincipal(); //customUserDetailsService.loadUserByUsername(loginRequest.email());
     String token = jwtService.generateToken(customUserDetails);
     return new TokenResponse(token);
   }

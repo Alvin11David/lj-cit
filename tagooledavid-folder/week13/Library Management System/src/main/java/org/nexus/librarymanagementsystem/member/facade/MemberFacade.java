@@ -21,7 +21,7 @@ public class MemberFacade {
 
   @Transactional
   public MemberResponse create(MemberRequest request) {
-    return memberMapper.toResponse(memberService.save(memberMapper.toEntity(request)));
+    return memberMapper.toResponse(memberService.create(memberMapper.toEntity(request)));
   }
 
   @Transactional(readOnly = true)

@@ -4,15 +4,26 @@ import java.util.List;
 import org.nexus.librarymanagementsystem.common.exception.MemberNotFoundException;
 import org.nexus.librarymanagementsystem.member.model.Member;
 import org.nexus.librarymanagementsystem.member.repository.MemberRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberService {
   private final MemberRepository memberRepository;
+  private final PasswordEncoder passwordEncoder;
 
-  public MemberService(MemberRepository memberRepository) {
+  public MemberService(MemberRepository memberRepository,PasswordEncoder passwordEncoder) {
     this.memberRepository = memberRepository;
+    this.passwordEncoder = passwordEncoder;
   }
+
+  public Member create(Member member){
+    String password = member.getPassword();
+    String encodedPassword=passwordEncoder.encode(password);
+    member.setPassword(encodedPassword);
+    return memberRepository.save(member);
+  }
+
 
   public Member save(Member member) {
     return memberRepository.save(member);
