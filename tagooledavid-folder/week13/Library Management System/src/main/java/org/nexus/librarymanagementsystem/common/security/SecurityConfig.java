@@ -57,8 +57,6 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers("/actuator/**")
                     .permitAll()
-                    .requestMatchers(HttpMethod.POST, "/api/v1/members")
-                    .permitAll()
                     .anyRequest()
                     .authenticated())
         .authenticationProvider(authenticationProvider())
