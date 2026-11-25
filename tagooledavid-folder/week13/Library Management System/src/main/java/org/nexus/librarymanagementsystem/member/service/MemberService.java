@@ -12,18 +12,17 @@ public class MemberService {
   private final MemberRepository memberRepository;
   private final PasswordEncoder passwordEncoder;
 
-  public MemberService(MemberRepository memberRepository,PasswordEncoder passwordEncoder) {
+  public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
     this.memberRepository = memberRepository;
     this.passwordEncoder = passwordEncoder;
   }
 
-  public Member create(Member member){
+  public Member create(Member member) {
     String password = member.getPassword();
-    String encodedPassword=passwordEncoder.encode(password);
+    String encodedPassword = passwordEncoder.encode(password);
     member.setPassword(encodedPassword);
     return memberRepository.save(member);
   }
-
 
   public Member save(Member member) {
     return memberRepository.save(member);
