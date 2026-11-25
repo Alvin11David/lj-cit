@@ -43,4 +43,10 @@ public class AuthController {
 
     return ResponseEntity.status(HttpStatus.ACCEPTED).body(body);
   }
+
+  /*
+  method of register
+  but then it will be hitting the add student endpoint
+
+  * */
 }

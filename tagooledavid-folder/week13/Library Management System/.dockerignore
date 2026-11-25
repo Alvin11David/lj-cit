@@ -1,0 +1,6 @@
+# target/ is NOT ignored, because Dockerfile.local needs the jar (see below)
+.git/
+.idea/
+*.iml
+api-client/
+docs/

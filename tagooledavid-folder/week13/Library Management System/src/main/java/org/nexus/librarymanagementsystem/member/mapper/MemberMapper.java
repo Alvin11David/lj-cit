@@ -11,6 +11,8 @@ public class MemberMapper {
     Member member = new Member();
     member.setUserName(request.username());
     member.setEmail(request.email());
+    member.setPassword(request.password());
+    member.setRole(request.role());
     return member;
   }
 
