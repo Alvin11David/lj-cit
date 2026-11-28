@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.nexus.librarymanagementsystem.book.dto.ApiResponse;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -55,5 +57,29 @@ public class ApiExceptionHandler {
     ApiResponse<Object> body = new ApiResponse<>("BOOK NOT FOUND", exception.getMessage(), null);
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+  }
+
+  @ExceptionHandler(ConflictException.class)
+  public ResponseEntity<ApiResponse<Object>> handleConflict(ConflictException exception) {
+    ApiResponse<Object> body =
+        new ApiResponse<>("CONFLICTING EXCEPTION", exception.getMessage(), null);
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+  }
+
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity<ApiResponse<Object>> handleBadCredentialsException(
+      BadCredentialsException exception) {
+    ApiResponse<Object> body =
+        new ApiResponse<>("BAD CREDENTIALS", "Invalid Email or Password", null);
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
+  }
+
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  public ResponseEntity<ApiResponse<Object>> handleDataIntegrityViolationException(
+      DataIntegrityViolationException exception) {
+    ApiResponse<Object> body =
+        new ApiResponse<>("DATA CONFLICT", "The request conflicts with existing data", null);
+    log.warn("Data integrity violation: {}", exception.getMostSpecificCause().getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
   }
 }
